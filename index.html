@@ -137,13 +137,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>Menu</li>
-                        <li>Tags</li>
+                        <li>菜单</li>
+                        <li>标签</li>
                         
-                        <li>Friends</li>
+                        <li>友情链接</li>
                         
                         
-                        <li>About Me</li>
+                        <li>关于我</li>
                         
                     </ul>
                 </div>
@@ -255,9 +255,139 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-20180105 BOM" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/blog/2018/01/05/20180105 BOM/" class="article-date">
+      <time datetime="2018-01-05T11:28:00.000Z" itemprop="datePublished">2018-01-05</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018/01/05/20180105 BOM/">BOM</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h1><ul>
+<li style="list-style: none"><input type="checkbox" checked> 理解 window 对象——BOM 的核心</li>
+<li style="list-style: none"><input type="checkbox" checked> 控制窗口、框架和弹出窗口</li>
+<li style="list-style: none"><input type="checkbox" checked> 利用 location 对象中的页面信息</li>
+<li style="list-style: none"><input type="checkbox" checked> 使用 navigator 对象了解浏览器<h2 id="window对象"><a href="#window对象" class="headerlink" title="window对象"></a>window对象</h2>BOM 的核心对象是window，它表示浏览器的一个实例。在浏览器中，window 对象有双重角色， 它既是通过 JavaScript 访问浏览器窗口的一个接口，又是 ECMAScript 规定的 Global 对象。这意味着在网页中定义的任何一个对象、变量和函数，都以 window 作为其 Global 对象，因此有权访问 parseInt()等方法。<h2 id="location-对象"><a href="#location-对象" class="headerlink" title="location 对象"></a>location 对象</h2>location 对象是很特别的一个对象，因为它既是 window 对象的属性，也是 document 对象的属性;换句话说，window.location 和 document.location 引用的是同一个对象。location对象的用处不只表现在它保存着当前文档的信息，还表现在它将 URL解析为独立的片段，让开发人员可以通过不同的属性访问这些片段。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属 性 名</th>
+<th>例 子</th>
+<th>说 明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hash</td>
+<td>“#contents”</td>
+<td>返回URL中的hash(#号后跟零或多个字符)，如果URL 中不包含散列，则返回空字符串</td>
+</tr>
+<tr>
+<td>host</td>
+<td>“www.wrox.com:80”</td>
+<td>返回服务器名称和端口号(如果有)</td>
+</tr>
+<tr>
+<td>hostname</td>
+<td>“www.wrox.com”</td>
+<td>返回不带端口的服务器名称</td>
+</tr>
+<tr>
+<td>href</td>
+<td>“<a href="http://www.wrox.com" target="_blank" rel="external">http://www.wrox.com</a>“</td>
+<td>返回当前加载页面的完整URL。而location对象的toString()方法也返回这个值</td>
+</tr>
+<tr>
+<td>pathname</td>
+<td>“/WileyCDA/“</td>
+<td>返回URL中的目录和(或)文件名</td>
+</tr>
+<tr>
+<td>port</td>
+<td>“8080”</td>
+<td>返回URL中指定的端口号。如果URL中不包含端口号，则 这个属性返回空字符串</td>
+</tr>
+<tr>
+<td>protocol</td>
+<td>“http:”</td>
+<td>返回页面使用的协议。通常是http:或https:</td>
+</tr>
+<tr>
+<td>search</td>
+<td>“?q=javascript”</td>
+<td>返回URL的查询字符串。这个字符串以问号开头</td>
+</tr>
+</tbody>
+</table>
+<h3 id="查询字符串参数"><a href="#查询字符串参数" class="headerlink" title="查询字符串参数"></a>查询字符串参数</h3><p>可以像下面这样创建一个函数，用以解析查询字符串，然后返回包含所有参数的一个对象.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">function getQueryStringArgs()&#123;</div><div class="line">    //取得查询字符串并去掉开头的问号</div><div class="line">    var qs = (location.search.length &gt; 0 ? location.search.substring(1) : &quot;&quot;),</div><div class="line">    //保存数据的对象 </div><div class="line">    args = &#123;&#125;,</div><div class="line">    //取得每一项</div><div class="line">    items = qs.length ? qs.split(&quot;&amp;&quot;) : [], </div><div class="line">    item = null,</div><div class="line">    name = null,</div><div class="line">    value = null,</div><div class="line">    //在 for 循环中使用</div><div class="line">    i = 0,</div><div class="line">    len = items.length;</div><div class="line">    //逐个将每一项添加到 args 对象中 </div><div class="line">    for (i=0; i &lt; len; i++)&#123;</div><div class="line">        item = items[i].split(&quot;=&quot;);</div><div class="line">        name = decodeURIComponent(item[0]);</div><div class="line">        value = decodeURIComponent(item[1]);</div><div class="line">        if (name.length) &#123;</div><div class="line">            args[name] = value;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">      return args;</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 假设查询字符串是?q=javascript&amp;num=10 </div><div class="line">var args = getQueryStringArgs();</div><div class="line">alert(args[&quot;q&quot;]);   // &quot;javascript&quot;</div><div class="line">alert(args[&quot;num&quot;]); // &quot;10&quot;</div></pre></td></tr></table></figure>
+<h3 id="位置操作"><a href="#位置操作" class="headerlink" title="位置操作"></a>位置操作</h3><p>使用 replace()方法。这个方法只接受一个参数，即要导航到的 URL;结果虽然会导致浏览器位置改变，但不会在历史记录中生成新记录。在调用 replace()方法之后，用户不能回到前一个页面。</p>
+<p>与位置有关的最后一个方法是 reload()，作用是重新加载当前显示的页面。如果调用 reload() 时不传递任何参数，页面就会以最有效的方式重新加载。也就是说，如果页面自上次请求以来并没有改 变过，页面就会从浏览器缓存中重新加载。如果要强制从服务器重新加载，则需要像下面这样为该方法 传递参数 true。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">location.reload(); //重新加载(有可能从缓存中加载)</div><div class="line">location.reload(true); //重新加载(从服务器重新加载)</div></pre></td></tr></table></figure></p>
+<h2 id="navigator对象"><a href="#navigator对象" class="headerlink" title="navigator对象"></a>navigator对象</h2><p>navigator 对象，已经成为识别客户端浏览器的事实标准。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">function getBrowserInfo()&#123;</div><div class="line">    var agent = navigator.userAgent.toLowerCase() ;</div><div class="line">    var regStr_ie = /msie [\d.]+;/gi ;</div><div class="line">    var regStr_ff = /firefox\/[\d.]+/gi</div><div class="line">    var regStr_chrome = /chrome\/[\d.]+/gi ;</div><div class="line">    var regStr_saf = /safari\/[\d.]+/gi ;</div><div class="line">    //IE</div><div class="line">    if(agent.indexOf(&quot;msie&quot;) &gt; 0)&#123;</div><div class="line">    return agent.match(regStr_ie) ;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    //firefox</div><div class="line">    if(agent.indexOf(&quot;firefox&quot;) &gt; 0)&#123;</div><div class="line">    return agent.match(regStr_ff) ;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    //Chrome</div><div class="line">    if(agent.indexOf(&quot;chrome&quot;) &gt; 0)&#123;</div><div class="line">    return agent.match(regStr_chrome) ;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    //Safari</div><div class="line">    if(agent.indexOf(&quot;safari&quot;) &gt; 0 &amp;&amp; agent.indexOf(&quot;chrome&quot;) &lt; 0)&#123;</div><div class="line">    return agent.match(regStr_saf) ;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">// 然后获取版本号</div><div class="line">var browser = getBrowserInfo() ;</div><div class="line">//alert(browser); </div><div class="line">var verinfo = (browser+&quot;&quot;).replace(/[^0-9.]/ig,&quot;&quot;); </div><div class="line">// 获取浏览器</div><div class="line">var browserName = (browser+&quot;&quot;).replace(/[^a-z]/ig,&quot;&quot;);</div></pre></td></tr></table></figure></p>
+<h2 id="screen对象（略）"><a href="#screen对象（略）" class="headerlink" title="screen对象（略）"></a>screen对象（略）</h2><p>JavaScript 中有几个对象在编程中用处不大，而 screen 对象就是其中之一。screen 对象基本上只 用来表明客户端的能力，其中包括浏览器窗口外部的显示器的信息，如像素宽度和高度等。每个浏览器 中的 screen 对象都包含着各不相同的属性。</p>
+<h2 id="history对象"><a href="#history对象" class="headerlink" title="history对象"></a>history对象</h2><p>history 对象保存着用户上网的历史记录，从窗口被打开的那一刻算起。因为 history 是 window 对象的属性，因此每个浏览器窗口、每个标签页乃至每个框架，都有自己的 history 对象与特定的 window 对象关联。出于安全方面的考虑，开发人员无法得知用户浏览过的 URL。不过，借由用户访问 过的页面列表，同样可以在不知道实际 URL 的情况下实现后退和前进。</p>
+<p>使用 go()方法可以在用户的历史记录中任意跳转，可以向后也可以向前。这个方法接受一个参数， 表示向后或向前跳转的页面数的一个整数值。负数表示向后跳转(类似于单击浏览器的“后退”按钮)， 正数表示向前跳转(类似于单击浏览器的“前进”按钮)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">//后退一页 history.go(-1);</div><div class="line">//前进一页 history.go(1);</div><div class="line">//前进两页 history.go(2);</div></pre></td></tr></table></figure></p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>浏览器对象模型(BOM)以 window 对象为依托，表示浏览器窗口以及页面可见区域。同时，window 对象还是 ECMAScript 中的 Global 对象，因而所有全局变量和函数都是它的属性，且所有原生的构造 函数及其他函数也都存在于它的命名空间下.</p>
+<ul>
+<li style="list-style: none"><input type="checkbox" checked> 在使用框架时，每个框架都有自己的 window 对象以及所有原生构造函数及其他函数的副本。 每个框架都保存在 frames 集合中，可以通过位置或通过名称来访问。</li>
+<li style="list-style: none"><input type="checkbox" checked> 有一些窗口指针，可以用来引用其他框架，包括父框架。</li>
+<li style="list-style: none"><input type="checkbox" checked> top 对象始终指向最外围的框架，也就是整个浏览器窗口。</li>
+<li style="list-style: none"><input type="checkbox" checked> parent 对象表示包含当前框架的框架，而 self 对象则回指 window。</li>
+<li style="list-style: none"><input type="checkbox" checked> 使用 location 对象可以通过编程方式来访问浏览器的导航系统。设置相应的属性，可以逐段<br>或整体性地修改浏览器的 URL。</li>
+<li style="list-style: none"><input type="checkbox" checked> 调用 replace()方法可以导航到一个新 URL，同时该 URL 会替换浏览器历史记录中当前显示<br>的页面。</li>
+<li style="list-style: none"><input type="checkbox" checked> navigator 对象提供了与浏览器有关的信息。到底提供哪些信息，很大程度上取决于用户的浏<br>览器;不过，也有一些公共的属性(如 userAgent)存在于所有浏览器中。</li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-20180104 js函数表达式" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -1554,14 +1684,14 @@
                 2016-2018 Lucien
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
                 
@@ -1570,7 +1700,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
                 
@@ -1603,9 +1733,9 @@
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script>
     // Open in New Window
