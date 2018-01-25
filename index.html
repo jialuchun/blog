@@ -259,6 +259,84 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-20180125 JS易错知识点" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/blog/2018/01/25/20180125 JS易错知识点/" class="article-date">
+      <time datetime="2018-01-25T10:47:14.000Z" itemprop="datePublished">2018-01-25</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018/01/25/20180125 JS易错知识点/">JS易错知识点</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h4 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a = 1;</div><div class="line">function test() &#123;</div><div class="line">    var a = 2;</div><div class="line">    console.log(a); // 2</div><div class="line">&#125;</div><div class="line">test();</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a = 1;</div><div class="line">function test() &#123;</div><div class="line">    console.log(a); // undefined</div><div class="line">    var a = 2;</div><div class="line">&#125;</div><div class="line">test();</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a = 1;</div><div class="line">function test() &#123;</div><div class="line">    console.log(a); // 1</div><div class="line">    a = 2;</div><div class="line">&#125;</div><div class="line">test();</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">let b = 1;</div><div class="line">function test() &#123;</div><div class="line">    console.log(b); // b is not defined</div><div class="line">    let b = 2;</div><div class="line">&#125;</div><div class="line">test();</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function test() &#123;</div><div class="line">    let a = 1;</div><div class="line">    &#123;</div><div class="line">        let a = 2;</div><div class="line">    &#125;</div><div class="line">    console.log(a); // 1</div><div class="line">&#125;</div><div class="line">test();</div></pre></td></tr></table></figure>
+<h4 id="类型比较"><a href="#类型比较" class="headerlink" title="类型比较"></a>类型比较</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var arr = [],</div><div class="line">    arr2 = [1];</div><div class="line">console.log(arr === arr2); // false</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var arr = [],</div><div class="line">    arr2 = [];</div><div class="line">console.log(arr === arr2); // false</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var arr = [],</div><div class="line">    arr2 = &#123;&#125;;</div><div class="line">console.log(typeof(arr) === typeof(arr2)); // true</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var arr = [];</div><div class="line">console.log(arr instanceof Object); // true</div><div class="line">console.log(arr instanceof Array); // true</div></pre></td></tr></table></figure>
+<h4 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">    name: &apos;xiaoming&apos;,</div><div class="line">    getName: function () &#123;</div><div class="line">        return this.name</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">console.log(obj.getName());  // &apos;xiaoming&apos;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">    myName: &apos;xiaoming&apos;,</div><div class="line">    getName: function () &#123;</div><div class="line">        return this.myName</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">var nameFn = obj.getName;</div><div class="line">console.log(nameFn()); // undefined</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">    myName: &apos;xiaoming&apos;,</div><div class="line">    getName: function () &#123;</div><div class="line">        return this.myName</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">var obj2 = &#123;</div><div class="line">    myName: &apos;xiaohua&apos;</div><div class="line">&#125;;</div><div class="line">var nameFn = obj.getName;</div><div class="line">console.log(nameFn.apply(obj2)); // &apos;xiaohua&apos;</div></pre></td></tr></table></figure>
+<h4 id="函数参数"><a href="#函数参数" class="headerlink" title="函数参数"></a>函数参数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function test6() &#123;</div><div class="line">    console.log(Array.prototype.slice.call(arguments)); // [1, 2]</div><div class="line">&#125;</div><div class="line">test6(1, 2);</div><div class="line">// 上方利用函数中的arguments类数组对象获取传入函数的参数数组，所以输出数组[1, 2]。</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function test7 () &#123;</div><div class="line">    return function () &#123;</div><div class="line">        console.log(Array.prototype.slice.call(arguments)); // 未执行到此，无输出</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">test7(1, 2);</div><div class="line">// 上方同样利用arguments获取参数，但因test7(1, 2)未执行return中的函数，所以无输出。若执行test7(1, 2)(3, 4)则会输出[3, 4]。</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var args = [1, 2];</div><div class="line">function test9() &#123;</div><div class="line">    console.log(Array.prototype.slice.call(arguments)); // [1, 2, 3, 4]</div><div class="line">&#125;</div><div class="line">Array.prototype.push.call(args, 3, 4);</div><div class="line">test9(...args);</div><div class="line">// 上方利用Array.prototype.push.call()方法向args数组中插入了3和4，并利用ES6延展操作符(...)将数组展开并传入test9，所以console为[1, 2, 3, 4]。</div></pre></td></tr></table></figure>
+<h4 id="闭包问题"><a href="#闭包问题" class="headerlink" title="闭包问题"></a>闭包问题</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var elem = document.getElementsByTagName(&apos;div&apos;); // 如果页面上有5个div</div><div class="line">for(var i = 0; i &lt; elem.length; i++) &#123;</div><div class="line">    elem[i].onclick = function () &#123;</div><div class="line">        alert(i); // 总是5</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var elem = document.getElementsByTagName(&apos;div&apos;); // 如果页面上有5个div</div><div class="line">for(var i = 0; i &lt; elem.length; i++) &#123;</div><div class="line">    (function (w) &#123;</div><div class="line">        elem[w].onclick = function () &#123;</div><div class="line">            alert(w); // 依次为0,1,2,3,4</div><div class="line">        &#125;;</div><div class="line">    &#125;)(i);</div><div class="line">&#125;</div><div class="line">// 在绑定点击事件外部封装一个立即执行函数，并将i传入该函数即可。</div><div class="line">// 另外一种方法 var 换成 let</div></pre></td></tr></table></figure>
+<h4 id="对象拷贝与赋值"><a href="#对象拷贝与赋值" class="headerlink" title="对象拷贝与赋值"></a>对象拷贝与赋值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">    name: &apos;xiaoming&apos;,</div><div class="line">    age: 23</div><div class="line">&#125;;</div><div class="line">var newObj = obj;</div><div class="line">newObj.name = &apos;xiaohua&apos;;</div><div class="line">console.log(obj.name); // &apos;xiaohua&apos;</div><div class="line">console.log(newObj.name); // &apos;xiaohua&apos;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var obj2 = &#123;</div><div class="line">    name: &apos;xiaoming&apos;,</div><div class="line">    age: 23</div><div class="line">&#125;;</div><div class="line">var newObj2 = Object.assign(&#123;&#125;, obj2, &#123;color: &apos;blue&apos;&#125;);</div><div class="line">newObj2.name = &apos;xiaohua&apos;;</div><div class="line">console.log(obj2.name); // &apos;xiaoming&apos;</div><div class="line">console.log(newObj2.name); // &apos;xiaohua&apos;</div><div class="line">console.log(newObj2.color); // &apos;blue&apos;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var obj3 = &#123;</div><div class="line">    name: &apos;xiaoming&apos;,</div><div class="line">    age: 23</div><div class="line">&#125;;</div><div class="line">var newObj3 = Object.create(obj3);</div><div class="line">newObj3.name = &apos;xiaohua&apos;;</div><div class="line">console.log(obj3.name); // &apos;xiaoming&apos;</div><div class="line">console.log(newObj3.name); // &apos;xiaohua&apos;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>参考劳卜文章</p>
+</blockquote>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-20180105 BOM" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
