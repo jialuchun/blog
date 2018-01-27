@@ -15,16 +15,16 @@
 
 
 
-<meta name="description" content="变量、作用域和内存问题  理解基本类型和引用类型的值  理解执行环境  理解垃圾收集1.1 基本类型和引用类型的值基本类型值指的是 简单的数据段，而引用类型值指那些可能由多个值构成的对象。1.1.1 动态的属性对于引用类型的值，我们可以为其添加属性和方法，也可以改变和删除其属性和方法。但是，我们不能给基本类型的值添加属性，尽管这样做不会导致任何错误。1.1.2 复制变量值基本类型:如果从一个变量向">
+<meta name="description" content="1. 重复输出一个给定的字符串重复输出一个给定的字符串（ str 第一个参数）n 次 （ num 第二个参数），如果第二个参数 num 小于0的时候，返回空字符串。 答：三种方法 1.使用循环 2.使用递归 3.ES6 repeat方法  方法1：通过while循环重复输出一个字符串123456789function repeatStringNumTimes(str, num) &amp;#123;  v">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js 变量、作用域、内存">
-<meta property="og:url" content="https://github.com/jialuchun/blog/2017/10/19/20171019 js变量、作用域、内存/index.html">
+<meta property="og:title" content="JS面试题一">
+<meta property="og:url" content="https://github.com/jialuchun/blog/2018/01/27/20180127 JS面试题一/index.html">
 <meta property="og:site_name" content="Blogs Of Lucien">
-<meta property="og:description" content="变量、作用域和内存问题  理解基本类型和引用类型的值  理解执行环境  理解垃圾收集1.1 基本类型和引用类型的值基本类型值指的是 简单的数据段，而引用类型值指那些可能由多个值构成的对象。1.1.1 动态的属性对于引用类型的值，我们可以为其添加属性和方法，也可以改变和删除其属性和方法。但是，我们不能给基本类型的值添加属性，尽管这样做不会导致任何错误。1.1.2 复制变量值基本类型:如果从一个变量向">
-<meta property="og:updated_time" content="2017-10-19T11:46:42.000Z">
+<meta property="og:description" content="1. 重复输出一个给定的字符串重复输出一个给定的字符串（ str 第一个参数）n 次 （ num 第二个参数），如果第二个参数 num 小于0的时候，返回空字符串。 答：三种方法 1.使用循环 2.使用递归 3.ES6 repeat方法  方法1：通过while循环重复输出一个字符串123456789function repeatStringNumTimes(str, num) &amp;#123;  v">
+<meta property="og:updated_time" content="2018-01-27T09:49:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js 变量、作用域、内存">
-<meta name="twitter:description" content="变量、作用域和内存问题  理解基本类型和引用类型的值  理解执行环境  理解垃圾收集1.1 基本类型和引用类型的值基本类型值指的是 简单的数据段，而引用类型值指那些可能由多个值构成的对象。1.1.1 动态的属性对于引用类型的值，我们可以为其添加属性和方法，也可以改变和删除其属性和方法。但是，我们不能给基本类型的值添加属性，尽管这样做不会导致任何错误。1.1.2 复制变量值基本类型:如果从一个变量向">
+<meta name="twitter:title" content="JS面试题一">
+<meta name="twitter:description" content="1. 重复输出一个给定的字符串重复输出一个给定的字符串（ str 第一个参数）n 次 （ num 第二个参数），如果第二个参数 num 小于0的时候，返回空字符串。 答：三种方法 1.使用循环 2.使用递归 3.ES6 repeat方法  方法1：通过while循环重复输出一个字符串123456789function repeatStringNumTimes(str, num) &amp;#123;  v">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -56,7 +56,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>js 变量、作用域、内存 | Blogs Of Lucien</title>
+<title>JS面试题一 | Blogs Of Lucien</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -256,11 +256,11 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap"><article id="post-20171019 js变量、作用域、内存" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-20180127 JS面试题一" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/blog/2017/10/19/20171019 js变量、作用域、内存/" class="article-date">
-      <time datetime="2017-10-19T11:46:32.000Z" itemprop="datePublished">2017-10-19</time>
+      <a href="/blog/2018/01/27/20180127 JS面试题一/" class="article-date">
+      <time datetime="2018-01-27T09:49:35.000Z" itemprop="datePublished">2018-01-27</time>
 </a>
 
 
@@ -275,7 +275,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      js 变量、作用域、内存
+      JS面试题一
     </h1>
   
 
@@ -292,40 +292,18 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="变量、作用域和内存问题"><a href="#变量、作用域和内存问题" class="headerlink" title="变量、作用域和内存问题"></a>变量、作用域和内存问题</h1><ul>
-<li style="list-style: none"><input type="checkbox" checked> 理解基本类型和引用类型的值</li>
-<li style="list-style: none"><input type="checkbox" checked> 理解执行环境</li>
-<li style="list-style: none"><input type="checkbox" checked> 理解垃圾收集<h2 id="1-1-基本类型和引用类型的值"><a href="#1-1-基本类型和引用类型的值" class="headerlink" title="1.1 基本类型和引用类型的值"></a>1.1 基本类型和引用类型的值</h2>基本类型值指的是 简单的数据段，而引用类型值指那些可能由多个值构成的对象。<h3 id="1-1-1-动态的属性"><a href="#1-1-1-动态的属性" class="headerlink" title="1.1.1 动态的属性"></a>1.1.1 动态的属性</h3>对于引用类型的值，我们可以为其添加属性和方法，也可以改变和删除其属性和方法。但是，我们不能给基本类型的值添加属性，尽管这样做不会导致任何错误。<h3 id="1-1-2-复制变量值"><a href="#1-1-2-复制变量值" class="headerlink" title="1.1.2 复制变量值"></a>1.1.2 复制变量值</h3><strong>基本类型</strong>:如果从一个变量向另一个变量复制基本类型的值，会在变量对象上创建一个新值，然后把该值复制到为新变量分配的位置上。<br><strong>引用类型</strong>:当从一个变量向另一个变量复制引用类型的值时，同样也会将存储在变量对象中的值复制一份放到为新变量分配的空间中。不同的是，这个值的副本实际上是一个指针，而这个指针指向存储在堆中的一个对象。复制操作结束后，两个变量实际上将引用同一个对象。因此，改变其中一个变量，就会影响另一个变量。<h3 id="1-1-3-传递参数"><a href="#1-1-3-传递参数" class="headerlink" title="1.1.3 传递参数"></a>1.1.3 传递参数</h3>ECMAScript中所有函数的参数都是按值传递的。<strong>访问变量有按值和按引用两种方式，而参数只能按值传递。</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function setName(obj) &#123; </div><div class="line">obj.name = &quot;Nicholas&quot;; </div><div class="line">obj = new Object(); </div><div class="line">obj.name = &quot;Greg&quot;;</div><div class="line">&#125;</div><div class="line">var person = new Object();</div><div class="line">setName(person);</div><div class="line">alert(person.name);    //&quot;Nicholas&quot;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>即使在函数内部修改了参数的值，但原始的引用仍然保持未变。实际上，当在函数内部重写obj时，这个变量引用的就是一个局部对象了。而这个局部对象会在函数执行完毕后立即被销毁。<br><strong>可以把ECMAScript函数的参数想象成局部变量。</strong></p>
-<h3 id="1-1-4-检测类型"><a href="#1-1-4-检测类型" class="headerlink" title="1.1.4 检测类型"></a>1.1.4 检测类型</h3><p>typeof操作符是确定一个变量是字符串、数值、布尔值，还是 undefined 的最佳工具。如果变量的值是一个对象或 null，则typeof操作符会像下面例子中所示的那样返回”object”。</p>
-<p>虽然在检测<strong>基本数据类型</strong>时 typeof 是非常得力的助手，但在检测<strong>引用类型</strong>的值时，这个操作符的 用处不大。</p>
-<p>想知对象的类型，ECMAScript提供了instanceof操作符。语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">result = variable instanceof constructor</div></pre></td></tr></table></figure></p>
-<p>根据规定，所有引用类型的值都是 Object 的实例。因此，==<strong>在检测一个引用类型值和 Object构造函数时，instanceof操作符始终会返回true</strong>==。当然，如果 ==<strong>使用instanceof操作符检测基本类型的值，则该操作符始终会返回false</strong>==,因为基本类型不是对象。</p>
-<p><strong>使用typeof操作符检测函数时，该操作符会返回”function”</strong></p>
-<h2 id="1-2-执行环境及作用域"><a href="#1-2-执行环境及作用域" class="headerlink" title="1.2 执行环境及作用域"></a>1.2 执行环境及作用域</h2><p><strong>JavaScript 没有块级作用域</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if (true) &#123;</div><div class="line">var color = &quot;blue&quot;;</div><div class="line">&#125;</div><div class="line">alert(color);    // &quot;blue&quot;</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">for (var i = 0; i &lt; 10; i++)&#123;</div><div class="line">doSomething(i);</div><div class="line">&#125;</div><div class="line">alert(i);      //10</div></pre></td></tr></table></figure>
-<h3 id="1-2-1-声明变量"><a href="#1-2-1-声明变量" class="headerlink" title="1.2.1 声明变量"></a>1.2.1 声明变量</h3><p>使用 var 声明的变量会自动被添加到最接近的环境中。如果初始化变量时没有使用 var 声明，该变量会自 动被添加到全局环境。</p>
-<p>在编写 JavaScript 代码的过程中，不声明而直接初始化变量是一个常见的错误做 法，因为这样可能会导致意外。我们建议在初始化变量之前，一定要先声明，这样就 可以避免类似问题。在严格模式下，初始化未经声明的变量会导致错误。</p>
-<h3 id="1-2-2-查询标识符"><a href="#1-2-2-查询标识符" class="headerlink" title="1.2.2 查询标识符"></a>1.2.2 查询标识符</h3><p>搜索过程从作用域链的前端开始，向上逐级查询与给定名字匹配的标识符。如果在局部环境中找到 了该标识符，搜索过程停止，变量就绪。如果在局部环境中没有找到该变量名，则继续沿作用域链向上 搜索。搜索过程将一直追溯到全局环境的变量对象。如果在全局环境中也没有找到这个标识符，则意味 着该变量尚未声明。</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>JavaScript变量可以用来保存两种类型的值:<strong>基本类型值和引用类型值</strong>。基本类型的值源自以下5种基本数据类型:<strong>Undefined、Null、Boolean、Number、String和Symbol(ES6)</strong>。基本类型值和引用类型值具 有以下特点:</p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 基本类型值在内存中占据固定大小的空间，因此被保存在栈内存中;</li>
-<li style="list-style: none"><input type="checkbox" checked> 从一个变量向另一个变量复制基本类型的值，会创建这个值的一个副本;</li>
-<li style="list-style: none"><input type="checkbox" checked> 引用类型的值是对象，保存在堆内存中;</li>
-<li style="list-style: none"><input type="checkbox" checked> 包含引用类型值的变量实际上包含的并不是对象本身，而是一个指向该对象的指针;</li>
-<li style="list-style: none"><input type="checkbox" checked> 从一个变量向另一个变量复制引用类型的值，复制的其实是指针，因此两个变量最终都指向同<br>一个对象;</li>
-<li style="list-style: none"><input type="checkbox" checked> 确定一个值是哪种基本类型可以使用 typeof 操作符，而确定一个值是哪种引用类型可以使用 instanceof 操作符。</li>
-</ul>
-<p>所有变量(包括基本类型和引用类型)都存在于一个执行环境(也称为作用域)当中，这个执 行环境决定了变量的生命周期，以及哪一部分代码可以访问其中的变量。以下是关于执行环境的几点总结:</p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 执行环境有全局执行环境(也称为全局环境)和函数执行环境之分;</li>
-<li style="list-style: none"><input type="checkbox" checked> 每次进入一个新执行环境，都会创建一个用于搜索变量和函数的作用域链;</li>
-<li style="list-style: none"><input type="checkbox" checked> 函数的局部环境不仅有权访问函数作用域中的变量，而且有权访问其包含(父)环境，乃至全<br>局环境</li>
-<li style="list-style: none"><input type="checkbox" checked> 全局环境只能访问在全局环境中定义的变量和函数，而不能直接访问局部环境中的任何数据;</li>
-<li style="list-style: none"><input type="checkbox" checked> 变量的执行环境有助于确定应该何时释放内存。</li>
-</ul>
+        <h2 id="1-重复输出一个给定的字符串"><a href="#1-重复输出一个给定的字符串" class="headerlink" title="1. 重复输出一个给定的字符串"></a>1. 重复输出一个给定的字符串</h2><p>重复输出一个给定的字符串（ str 第一个参数）n 次 （ num 第二个参数），如果第二个参数 num 小于0的时候，返回空字符串。</p>
+<p>答：三种方法</p>
+<p>1.<strong>使用循环</strong> 2.<strong>使用递归</strong> 3.<strong>ES6 repeat方法</strong></p>
+<blockquote>
+<p>方法1：通过while循环重复输出一个字符串<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function repeatStringNumTimes(str, num) &#123;</div><div class="line">  var repeatedStr = &quot;&quot;;</div><div class="line">  while (num &gt; 0) &#123;</div><div class="line">    repeatedStr += str;</div><div class="line">    num--;</div><div class="line">  &#125;</div><div class="line">  return repeatedStr;</div><div class="line">&#125;</div><div class="line">repeatStringNumTimes(&quot;abc&quot;, 3);</div></pre></td></tr></table></figure></p>
+<p>同理for循环也一样<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function repeatStringNumTimes(str, num) &#123;</div><div class="line">  var repeatedStr = &quot;&quot;;</div><div class="line">  for(var i = 0; i &lt; num ;i++) &#123;</div><div class="line">    repeatedStr += str;</div><div class="line">  &#125;</div><div class="line">  return repeatedStr;</div><div class="line">&#125;</div><div class="line">repeatStringNumTimes(&quot;abc&quot;, 3)</div></pre></td></tr></table></figure></p>
+<p>方法2：通过条件判断和递归重复输出一个字符串<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function repeatStringNumTimes(str, num) &#123;</div><div class="line">  if(num &lt; 0) &#123;</div><div class="line">    return &quot;&quot;;</div><div class="line">  &#125;</div><div class="line">  if(num == 1) &#123; </div><div class="line">    return str;</div><div class="line">  &#125; else &#123; </div><div class="line">    return str + repeatStringNumTimes(str, num - 1);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">repeatStringNumTimes(&quot;abc&quot;, 3);</div></pre></td></tr></table></figure></p>
+<p>方法3：使用ES6 repeat() 方法重复输出一个字符串<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function repeatStringNumTimes(str, num) &#123;</div><div class="line">  if (num &gt; 0) &#123;</div><div class="line">    return str.repeat(num);</div><div class="line">  &#125; else &#123;</div><div class="line">    return &quot;&quot;;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">repeatStringNumTimes(&quot;abc&quot;, 3);</div></pre></td></tr></table></figure></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 上面👆转成三元表达式</div><div class="line">function repeatStringNumTimes(str, num) &#123;</div><div class="line">  num &gt; 0 ? str.repeat(num) : &quot;&quot;;</div><div class="line">&#125;</div><div class="line">repeatStringNumTimes(&quot;abc&quot;, 3);</div></pre></td></tr></table></figure>
+<h2 id="2-JS查找字符串中出现次数最多的字符"><a href="#2-JS查找字符串中出现次数最多的字符" class="headerlink" title="2. JS查找字符串中出现次数最多的字符"></a>2. JS查找字符串中出现次数最多的字符</h2><p>JS查找字符串中出现次数最多的字符</p>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">var str = &quot;jialuchunzheshiceshi&quot;;</div><div class="line">var o = &#123;&#125;;</div><div class="line">for (var i = 0, i &lt; str.length; i++) &#123;</div><div class="line">    var char = str.charAt(i);</div><div class="line">    if (o[char]) &#123;</div><div class="line">        o[char]++;    // 次数加1</div><div class="line">    &#125; else &#123;</div><div class="line">        o[char] = 1;  // 若第一次出现，次数记为1</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">console.log(o); // 输出的是完整的对象，记录着每一个字符及其出现的次数</div><div class="line">// 遍历对象，找到出现次数最多的字符的次数</div><div class="line">var max = 0;</div><div class="line">for (var key in o) &#123;</div><div class="line">    if (max &lt; o[key]) &#123;</div><div class="line">        max = o[key]; // max始终储存次数最大的那个</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">for (var key in o) &#123;</div><div class="line">    if (o[key] == max) &#123;</div><div class="line">        // console.log(key);</div><div class="line">        console.log(&quot;最多的字符是&quot; + key);</div><div class="line">        console.log(&quot;出现的次数是&quot; + max);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -334,13 +312,13 @@
   
     
     <div class="copyright">
-        <p><span>Title:</span><a href="/blog/2017/10/19/20171019 js变量、作用域、内存/">js 变量、作用域、内存</a></p>
+        <p><span>Title:</span><a href="/blog/2018/01/27/20180127 JS面试题一/">JS面试题一</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">Lucien</a></p>
-        <p><span>Created:</span>2017-10-19, 19:46:32</p>
-        <p><span>Updated:</span>2017-10-19, 19:46:42</p>
+        <p><span>Created:</span>2018-01-27, 17:49:35</p>
+        <p><span>Updated:</span>2018-01-27, 17:49:53</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/blog/2017/10/19/20171019 js变量、作用域、内存/" title="js 变量、作用域、内存">https://github.com/jialuchun/blog/2017/10/19/20171019 js变量、作用域、内存/</a>
-            <span class="copy-path" data-clipboard-text="From https://github.com/jialuchun/blog/2017/10/19/20171019 js变量、作用域、内存/　　By Lucien" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <span>Full URL:</span><a class="post-url" href="/blog/2018/01/27/20180127 JS面试题一/" title="JS面试题一">https://github.com/jialuchun/blog/2018/01/27/20180127 JS面试题一/</a>
+            <span class="copy-path" data-clipboard-text="From https://github.com/jialuchun/blog/2018/01/27/20180127 JS面试题一/　　By Lucien" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -352,16 +330,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/blog/2017/11/28/20171128 js引用类型/">
-                    js 引用类型
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/blog/2017/10/14/20171014 js基本概念/">
-                    js 基本概念
+                <a href="/blog/2018/01/25/20180125 JS易错知识点/">
+                    JS易错知识点
                 </a>
             </div>
         
@@ -373,7 +345,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#变量、作用域和内存问题"><span class="toc-number">1.</span> <span class="toc-text">变量、作用域和内存问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-基本类型和引用类型的值"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 基本类型和引用类型的值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1-动态的属性"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1.1 动态的属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-复制变量值"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.1.2 复制变量值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3-传递参数"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.1.3 传递参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-4-检测类型"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.1.4 检测类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-执行环境及作用域"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 执行环境及作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-声明变量"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1 声明变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-查询标识符"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2.2 查询标识符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">1.3.</span> <span class="toc-text">小结</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-重复输出一个给定的字符串"><span class="toc-number">1.</span> <span class="toc-text">1. 重复输出一个给定的字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-JS查找字符串中出现次数最多的字符"><span class="toc-number">2.</span> <span class="toc-text">2. JS查找字符串中出现次数最多的字符</span></a></li></ol>
         
     </div>
     <style>
@@ -409,7 +381,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"js 变量、作用域、内存　| Blogs Of Lucien　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"JS面试题一　| Blogs Of Lucien　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -429,15 +401,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/blog/2017/11/28/20171128 js引用类型/" title="Pre: js 引用类型">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
         
 
         <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/blog/2017/10/14/20171014 js基本概念/" title="Next: js 基本概念">
+            <a href="/blog/2018/01/25/20180125 JS易错知识点/" title="Next: JS易错知识点">
                 <i class="fa fa-angle-right"></i>
             </a>
         
