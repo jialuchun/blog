@@ -137,13 +137,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>Menu</li>
-                        <li>Tags</li>
+                        <li>菜单</li>
+                        <li>标签</li>
                         
-                        <li>Friends</li>
+                        <li>友情链接</li>
                         
                         
-                        <li>About Me</li>
+                        <li>关于我</li>
                         
                     </ul>
                 </div>
@@ -255,9 +255,138 @@
             </nav>
         </header>                
     </div>
-    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-20180129 JS面试题二" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/blog/2018/01/29/20180129 JS面试题二/" class="article-date">
+      <time datetime="2018-01-29T11:59:55.000Z" itemprop="datePublished">2018-01-29</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018/01/29/20180129 JS面试题二/">JS面试题二</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="前端开发所需掌握知识点概要"><a href="#前端开发所需掌握知识点概要" class="headerlink" title="前端开发所需掌握知识点概要"></a>前端开发所需掌握知识点概要</h1><ul>
+<li>HTML&amp;CSS：<br>  对Web标准的理解（结构、表现、行为）、浏览器内核、渲染原理、兼容性、CSS语法、层次关系，常用属性、布局、选择器、权重、盒模型、<br>  Hack、CSS预处理器、CSS3、Flexbox、CSS Modules、Document flow、BFC、HTML5（离线 &amp; 存储、Histoy,多媒体、WebGL\SVG\Canvas）；</li>
+<li><p>JavaScript：<br>  数据类型、运算、对象、Function、继承、闭包、作用域、事件、Prototype、RegExp、JSON、Ajax、DOM、BOM、<br>  内存泄漏、跨域、异步请求、模板引擎、模块化、Flux、同构、算法、ECMAScript6、Nodejs、HTTP、</p>
+</li>
+<li><p>其他：<br>  主流MVVM框架(React\Vue\Angular)、Hybrid App\React Native\Weex、TypeScript、RESTFul、WEB安全、前端工程化、依赖管理、性能优化、<br>  重构、团队协作、可维护、易用性、SEO、UED、前端技术选型、快速学习能力等；</p>
+</li>
+</ul>
+<hr>
+<ol>
+<li>如何添加、移除、移动、复制、创建和查找节点等。</li>
+</ol>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">document.createElement(&quot;div&quot;); // 创建新元素</div><div class="line">document.createTextNode(&quot;这是新文本&quot;); // 创建新文本</div><div class="line">appendChild();  // 添加</div><div class="line">removeChild();  // 移除</div><div class="line">replaceChild(); // 替换</div><div class="line">insertBefore(); // 之前插入</div><div class="line">insertAfter();  // 之后插入</div><div class="line">cloneNode();    // 复制</div><div class="line">document.getElementsByTagName(&quot;&quot;);  // 通过标签名称查找</div><div class="line">document.getElementsByName(&quot;&quot;); // 通过元素的Name属性的值查找</div><div class="line">document.getElementById(&quot;&quot;);    // 通过元素Id，唯一性查找</div><div class="line">document.getElementsByClassName(&quot;&quot;);    // 通过类查找</div><div class="line">document.querySelector(&quot;&quot;); // h5 新方法</div></pre></td></tr></table></figure></p>
+<hr>
+<ol>
+<li>如何使用事件？以及IE和标准DOM事件模型之间存在的差别？</li>
+</ol>
+<p>答：</p>
+<ul>
+<li><p>关于事件流</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">1.1 IE的事件流：事件冒泡</div><div class="line">  由事件的目标(event.srcElement)接受事件，然后逐级向上（例：下一个为包含event.srcElement的节点传递事件,直到文档节点document;</div><div class="line">  </div><div class="line">1.2 其他浏览器支持的另一种事件流：事件捕获</div><div class="line">  与事件冒泡正好相反，文档节点document先监听到事件，然后把事件逐级向下传递事件，直到目标节点event.target；</div><div class="line">  </div><div class="line">1.3 DOM事件流</div><div class="line">  DOM2级事件规范的事件流综合了以上两种，把事件流分为了以下三个阶段：</div><div class="line">  1.3.1 事件捕获阶段</div><div class="line">    不涉及事件目标，或者说这个阶段在目标之前就结束了；</div><div class="line">  1.3.2 处于目标阶段</div><div class="line">    被看作冒泡阶段的一部分，所以可以在冒泡阶段在目标事件上操作事件；</div><div class="line">  1.3.3 事件冒泡阶段</div><div class="line">  </div><div class="line">1.4 规范和浏览器实现的差别</div><div class="line">  DOM2级事件规范的捕获阶段，事件从文档节点document开始传播，现代浏览器大多数都是从window对象开始传播事件的；</div><div class="line">  DOM2级事件规范捕获阶段不涉及事件目标，现代浏览器大多数都在这个阶段包含事件目标。</div></pre></td></tr></table></figure>
+</li>
+<li><p>如何使用事件？以下是几种用来响应事件的事件处理程序<br>HTML事件处理程序|DOM0级事件处理程序|DOM2级事件处理程序|IE的事件处理程序(IE11以下)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">2.1 HTML事件处理程序</div><div class="line">  2.1.1 指定事件:&lt;button type=&quot;button&quot; onclick=&quot;alert(&apos;响应事件的处javascript代码，可以用全局的函数&apos;)&quot;&gt;Click Me!&lt;/button&gt;</div><div class="line">  2.1.2 优缺点:简单，但是与HTML代码紧密耦合，更改不方便;</div><div class="line">  2.1.3 删除事件:同DOM0的删除事件处理方式;</div><div class="line">2.2 DOM0级事件处理程序</div><div class="line">  2.2.1 指定事件:document.onclick = function()&#123;alert(&quot;document has been clicked&quot;)&#125;;</div><div class="line">  2.2.2 删除事件:document.onclick = null;</div><div class="line">  2.2.3 优缺点:简单且跨浏览器</div><div class="line">  2.2.4 实质: 为元素指定方法(栗子中为document指定onclick方法)，移除方法，所以其处理程序是在元素的作用域运行的；</div><div class="line">2.3 DOM2级事件处理程序</div><div class="line">  2.3.1 指定事件:addEventListener(&quot;引号括起来的事件名&quot;， 触发事件后调用的事件处理程序, 是否在捕获节点调用时间处理程序的布尔值)</div><div class="line">    栗子:var funA = function()&#123;alert(&quot; DOM2级事件处理程序&quot;)&#125;;</div><div class="line">          document.addEventListener(&quot;click&quot;, funA, false);</div><div class="line">  2.3.2 删除事件: document.removeEventListener(&quot;click&quot;, funA, false);</div><div class="line">    如果指定的处理程序是匿名函数则不能删除，因为没有函数名;</div><div class="line">  2.3.3 优缺点: 可以添加多个监听事件，缺点见2.3.2;</div><div class="line">2.4 IE的事件处理程序(IE11以下，IE11及Edge用的DOM2级事件处理程序)</div><div class="line">  2.4.1 指定事件: attachEvent(&quot;onclick&quot;, function()&#123;alert(&quot;is no longer supported in ie11&quot;)&#125;);</div><div class="line">  2.4.2 删除事件: detachEvent(&quot;onclick&quot;, funA);</div><div class="line">    如果指定的处理程序是匿名函数则不能删除，因为没有函数名;</div><div class="line">  2.4.3 优缺点:可以添加多个监听事件，缺点见2.4.2;</div></pre></td></tr></table></figure>
+</li>
+<li><p>IE和标准DOM事件模型之间存在的差别</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">3.1 这里的IE是IE11以下;</div><div class="line">3.2 参数的差别: attachEvent()的第一个参数比addEventListener()的事件名多一个&quot;on&quot;，</div><div class="line">    且没有第三个参数，因为IE事件模型只支持冒泡事件流;</div><div class="line">3.3 事件处理函数作用域的区别: IE中事件处理程序处于全局作用域，其内的this会指向window;</div><div class="line">    而用DOM（0或2）级事件的事件处理程序的作用域是元素作用域，其内的this指向其所属的元素</div><div class="line">    例: document.addEventListener(&quot;click&quot;, function()&#123; </div><div class="line">            if(this == document)&#123;</div><div class="line">              alert(&quot;此时this指向document&quot;);</div><div class="line">            &#125;</div><div class="line">        &#125;, false);</div><div class="line">3.4 事件对象event的属性方法的差别</div><div class="line">        IE                    DOM</div><div class="line">cancelBubble = true    stopPropagation() //停止冒泡</div><div class="line">returnValue = false    preventDefault() //阻止元素默认事件</div><div class="line">srcEelement            target //事件目标</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ol>
+<li>XMLHttpRequest —— 这是什么、怎样完整地执行一次GET请求、怎样检测错误。</li>
+</ol>
+<p>答：</p>
+<ul>
+<li><p>关于XMLHttpRequest</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">1.1 作用: 提供了网页加载后在后台与服务器通信的方法;实现AJAX通信;</div><div class="line">1.2 创建: var xhr = new XMLHttpRequest();//不适用于IE7之前的版本，其他低版本IE可通过 ActiveXObject构造;</div><div class="line">1.3 对象属性: readyState,可取的值见图-1;</div><div class="line">1.4 对象事件: readyState的值的改变会触发readyStatechange事件;错误会触发error事件；</div><div class="line">1.3 优缺点: 在不重新加载页面的情况下更新网页;</div><div class="line">1.4 XMLHttpRequest 2级:</div><div class="line">  FromData对象:用来序列化表单或者创建与表单格式相同的数据;其实例可直接传给seng()方法使用;</div><div class="line">  栗子： var form1 = document.forms[0];</div><div class="line">        xhr.send(new FormData(form1));</div></pre></td></tr></table></figure>
+</li>
+<li><p>一次GET请求分析,并检测执行过程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">2.1 异步GET</div><div class="line">  var xhr = new XMLHttpRequest();</div><div class="line">  xhr.onerror = function()&#123;alert(&quot;我出错啦&quot;)&#125;;</div><div class="line">  xhr.onreadystatechange = function()&#123;</div><div class="line">    switch(xhr.readyState)&#123;</div><div class="line">      case 0 : alert(&quot;未初始化，及还未调用open方法&quot;);</div><div class="line">               break;</div><div class="line">      case 1 : alert(&quot;启动，未调用send方法&quot;);</div><div class="line">               break;</div><div class="line">      case 2 : alert(&quot;发送，未收到响应&quot;);</div><div class="line">               break;</div><div class="line">      case 3 : alert(&quot;接受，取得部分数据&quot;);</div><div class="line">               break;</div><div class="line">      case 4 : if((xhr.status &gt;=200 &amp;&amp; xhr.status &lt; 300) || xhr.status ==304)&#123;</div><div class="line">                alert(xhr.responceText);</div><div class="line">               &#125;;</div><div class="line">                break;</div><div class="line">      default : alert(&quot;are you kidding?&quot;);</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">  xhr.open(&quot;get&quot;, &quot;url&quot;, true)//启动一个请求，未发送</div><div class="line">  xhr.send(null);//发送请求. 如果该请求是异步模式(默认),该方法会立刻返回. 相反,如果请求是同步模式,则直到请求的响应完全接受以后,该方法才会返回</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ol>
+<li>盒模型 —— 外边距、内边距和边框之间的关系，及IE8以下版本的浏览器中的盒模型</li>
+</ol>
+<ul>
+<li>W3C盒模型</li>
+</ul>
+<p><img src="https://jialuchun.github.io/images/js_img_2.png" alt="image"></p>
+<ul>
+<li>IE8以下版本的浏览器中的盒模型</li>
+</ul>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="https://jialuchun.github.io/images/js_img_3.png" alt="image"></h2><ol>
+<li>行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？</li>
+</ol>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> （1）CSS规范规定，每个元素都有display属性，确定该元素的类型，每个元素都有默认的display值，比如div</div><div class="line">默认display属性值为“block”，成为“块级”元素；span默认display属性值为“inline”，是“行内”元素。  </div><div class="line"> （2）行内元素有：a b span img input select strong（强调的语气） 块级元素有：div ul ol li dl dt dd h1 h2 h3 h4…p  </div><div class="line"> （3）知名的空元素：&lt;br&gt;&lt;hr&gt;&lt;img&gt;&lt;input&gt;&lt;link&gt;&lt;meta&gt;  </div><div class="line">  鲜为人知的是：&lt;area&gt;&lt;base&gt;&lt;col&gt;&lt;command&gt;&lt;embed&gt;&lt;keygen&gt;&lt;param&gt;&lt;source&gt;&lt;track&gt;&lt;wbr&gt;</div></pre></td></tr></table></figure></p>
+<hr>
+<ol>
+<li>浮动元素 —— 怎么使用它们、它们有什么问题以及怎么解决这些问题。</li>
+</ol>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">需要浮动的元素可使用CSS中float属性来定义元素的浮动位置，left：往左浮动，right：往右浮动</div><div class="line">浮动元素引起的问题：</div><div class="line">（1）父元素的高度无法被撑开，影响与父元素同级的元素</div><div class="line">（2）与浮动元素同级的非浮动元素会跟随其后</div><div class="line">（3）若非第一个元素浮动，则该元素之前的元素也需要浮动，否则会影响页面显示的结构</div><div class="line">解决方法：</div><div class="line">使用CSS中的clear:both;属性来清除元素的浮动可解决2、3问题，对于问题1，添加如下样式，给父元素添加clearfix样式：</div><div class="line">.clearfix:after&#123;content: &quot;.&quot;;display: block;height: 0;clear: both;visibility: hidden;&#125;</div><div class="line">.clearfix&#123;display: inline-block;&#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<ol>
+<li>HTML与XHTML——二者有什么区别，你觉得应该使用哪一个并说出理由。</li>
+</ol>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">XHTML 元素必须被正确地嵌套</div><div class="line">XHTML 元素必须被关闭，空标签也必须被关闭，如 &lt;br&gt; 必须写成 &lt;br /&gt;</div><div class="line">XHTML 标签名必须用小写字母</div><div class="line">XHTML 文档必须拥有根元素</div><div class="line">XHTML 文档要求给所有属性赋一个值</div><div class="line">XHTML 要求所有的属性必须用引号&quot;&quot;括起来</div><div class="line">XHTML 文档需要把所有 &lt; 、&gt;、&amp; 等特殊符号用编码表示</div><div class="line">XHTML 文档不要在注释内容中使“--”</div><div class="line">XHTML 图片必须有说明文字</div><div class="line">XHTML 文档中用id属性代替name属性</div></pre></td></tr></table></figure></p>
+<hr>
+<ol>
+<li>JSON —— 作用、用途、设计结构</li>
+</ol>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式。易于人阅读和编写。同时也易于机器解析和生成。</div><div class="line">JSON建构于两种结构：</div><div class="line">“名称/值”对的集合（A collection of name/value </div><div class="line">pairs）。不同的语言中，它被理解为对象（object），纪录（record），结构（struct），字典（dictionary），哈希表</div><div class="line">（hash table），有键列表（keyed list），或者关联数组 （associative array）。 </div><div class="line">值的有序列表（An ordered list of values）。在大部分语言中，它被理解为数组（array）。</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>非原创，参考博客园、简书等。</p>
+</blockquote>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-20180127 JS面试题一" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -1829,14 +1958,14 @@
                 2016-2018 Lucien
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
                 
@@ -1845,7 +1974,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
                 
@@ -1878,9 +2007,9 @@
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
 </div>
 <script>
     // Open in New Window
