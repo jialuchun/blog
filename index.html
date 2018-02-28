@@ -259,6 +259,256 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-20180228 JS面试题四" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/blog/2018/02/28/20180228 JS面试题四/" class="article-date">
+      <time datetime="2018-02-28T10:12:49.000Z" itemprop="datePublished">2018-02-28</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h1><blockquote>
+<ol>
+<li>js的==基本==数据类型。</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Undefined、Null、Boolean、Number、String、Symbol(创建后独一无二且不可变的数据类型，ES6新增)</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>js有哪些内置对象？</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">数据封装类对象：Object、Array、Boolean、Number 和 String</div><div class="line">其他对象：Function、Arguments、Math、Date、RegExp、Error</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>JavaScript原型，原型链？(参考链接<a href="https://www.cnblogs.com/shuiyi/p/5305435.html" target="_blank" rel="external">https://www.cnblogs.com/shuiyi/p/5305435.html</a>)</li>
+</ol>
+</blockquote>
+<p>答：</p>
+<p>一. prototype和<strong>proto</strong>的区别</p>
+<p><img src="https://jialuchun.github.io/images/js_img_4.png" alt="image"></p>
+<p>==prototype是函数才有的属性==<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var a = &#123;&#125;;</div><div class="line">console.log(a.prototype);  //undefined</div><div class="line">console.log(a.__proto__);  //Object &#123;&#125;</div><div class="line"></div><div class="line">var b = function()&#123;&#125;</div><div class="line">console.log(b.prototype);  //b &#123;&#125;</div><div class="line">console.log(b.__proto__);  //function() &#123;&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="https://jialuchun.github.io/images/js_img_5.png" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">/*1、字面量方式*/</div><div class="line">var a = &#123;&#125;;</div><div class="line">console.log(a.__proto__);  //Object &#123;&#125;</div><div class="line"></div><div class="line">console.log(a.__proto__ === a.constructor.prototype); //true</div><div class="line"></div><div class="line">/*2、构造器方式*/</div><div class="line">var A = function()&#123;&#125;;</div><div class="line">var a = new A();</div><div class="line">console.log(a.__proto__); //A &#123;&#125;</div><div class="line"></div><div class="line">console.log(a.__proto__ === a.constructor.prototype); //true</div><div class="line"></div><div class="line">/*3、Object.create()方式*/</div><div class="line">var a1 = &#123;a:1&#125;</div><div class="line">var a2 = Object.create(a1);</div><div class="line">console.log(a2.__proto__); //Object &#123;a: 1&#125;</div><div class="line"></div><div class="line">console.log(a.__proto__ === a.constructor.prototype); //false（此处即为图1中的例外情况）</div></pre></td></tr></table></figure>
+<p><img src="https://jialuchun.github.io/images/js_img_6.png" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var A = function()&#123;&#125;;</div><div class="line">var a = new A();</div><div class="line">console.log(a.__proto__); //A &#123;&#125;（即构造器function A 的原型对象）</div><div class="line">console.log(a.__proto__.__proto__); //Object &#123;&#125;（即构造器function Object 的原型对象）</div><div class="line">console.log(a.__proto__.__proto__.__proto__); //null</div></pre></td></tr></table></figure>
+<blockquote>
+<ol>
+<li>如何将字符串转化为数字，例如’12.3b’?</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">parseFloat(&apos;12.3b&apos;);</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>如何将浮点数点左边的数每三位添加一个逗号(参考<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString)。" target="_blank" rel="external">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString)。</a></li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">一. </div><div class="line"></div><div class="line">var num=123456789;</div><div class="line">num.toLocaleString(); // 123,546,879 前面最好加上parseFloat， parseFloat(num).toLocaleString();</div><div class="line"></div><div class="line">var num=123456789;</div><div class="line">num.toLocaleString(&apos;zh-Hans-CN-u-nu-hanidec&apos;, &#123; useGrouping: false &#125;);</div><div class="line">// &quot;一二三四五六七八九&quot; 因为 useGrouping 默认为 true, 所以分组。</div><div class="line"></div><div class="line">二.</div><div class="line"></div><div class="line">参考：http://www.tuicool.com/articles/ArQZfui</div><div class="line">function commafy(num) &#123;</div><div class="line">  return num &amp;&amp; num</div><div class="line">      .toString()</div><div class="line">      .replace(/(\d)(?=(\d&#123;3&#125;)+\.)/g, function($0, $1) &#123;</div><div class="line">          return $1 + &quot;,&quot;;</div><div class="line">      &#125;);</div><div class="line">&#125;</div><div class="line">console.log(commafy(1234567.90)); //1,234,567.90</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>如何实现数组的随机排序？</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">方法一：</div><div class="line">	var arr = [1,2,3,4,5,6,7,8,9,10];</div><div class="line">	function randSort1(arr)&#123;</div><div class="line">		for(var i = 0,len = arr.length;i &lt; len; i++ )&#123;</div><div class="line">			var rand = parseInt(Math.random()*len);</div><div class="line">			var temp = arr[rand];</div><div class="line">			arr[rand] = arr[i];</div><div class="line">			arr[i] = temp;</div><div class="line">		&#125;</div><div class="line">		return arr;</div><div class="line">	&#125;</div><div class="line">	console.log(randSort1(arr));</div><div class="line">	</div><div class="line">方法二：</div><div class="line">	var arr = [1,2,3,4,5,6,7,8,9,10];</div><div class="line">	function randSort2(arr)&#123;</div><div class="line">		var mixedArray = [];</div><div class="line">		while(arr.length &gt; 0)&#123;</div><div class="line">			var randomIndex = parseInt(Math.random()*arr.length);</div><div class="line">			mixedArray.push(arr[randomIndex]);</div><div class="line">			arr.splice(randomIndex, 1);</div><div class="line">		&#125;</div><div class="line">		return mixedArray;</div><div class="line">	&#125;</div><div class="line">	console.log(randSort2(arr));</div><div class="line"></div><div class="line">方法三：</div><div class="line">	var arr = [1,2,3,4,5,6,7,8,9,10];</div><div class="line">	arr.sort(function()&#123;</div><div class="line">		return Math.random() - 0.5;</div><div class="line">	&#125;)</div><div class="line">	console.log(arr);</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>Javascript如何实现继承？</li>
+</ol>
+</blockquote>
+<p>答：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">1、构造继承</div><div class="line">2、原型继承</div><div class="line">3、实例继承</div><div class="line">4、拷贝继承</div><div class="line"></div><div class="line">原型prototype机制或apply和call方法去实现较简单，建议使用构造函数与原型混合方式。</div><div class="line"></div><div class="line">	function Parent()&#123;</div><div class="line">		this.name = &apos;wang&apos;;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	function Child()&#123;</div><div class="line">		this.age = 28;</div><div class="line">	&#125;</div><div class="line">	Child.prototype = new Parent();//继承了Parent，通过原型</div><div class="line"></div><div class="line">	var demo = new Child();</div><div class="line">	alert(demo.age);</div><div class="line">	alert(demo.name);//得到被继承的属性</div></pre></td></tr></table></figure>
+<blockquote>
+<ol>
+<li>JavaScript继承的几种实现方式？</li>
+</ol>
+</blockquote>
+<p>答：</p>
+<p>参考阮一峰博客：<a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html" target="_blank" rel="external">构造函数的继承</a></p>
+<p>参考阮一峰博客：<a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance_continued.html" target="_blank" rel="external">非构造函数的继承</a></p>
+<blockquote>
+<ol>
+<li>javascript创建对象的几种方式？</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line">javascript创建对象简单的说,无非就是使用内置对象或各种自定义对象，当然还可以用JSON；但写法有很多种，也能混合使用。</div><div class="line"></div><div class="line"></div><div class="line">1、对象字面量的方式</div><div class="line"></div><div class="line">	person=&#123;firstname:&quot;Mark&quot;,lastname:&quot;Yun&quot;,age:25,eyecolor:&quot;black&quot;&#125;;</div><div class="line"></div><div class="line">2、用function来模拟无参的构造函数</div><div class="line"></div><div class="line">	function Person()&#123;&#125;</div><div class="line">	var person=new Person();//定义一个function，如果使用new&quot;实例化&quot;,该function可以看作是一个Class</div><div class="line">	person.name=&quot;Mark&quot;;</div><div class="line">	person.age=&quot;25&quot;;</div><div class="line">	person.work=function()&#123;</div><div class="line">	    alert(person.name+&quot; hello...&quot;);</div><div class="line">	&#125;</div><div class="line">	person.work();</div><div class="line"></div><div class="line">3、用function来模拟参构造函数来实现（用this关键字定义构造的上下文属性）</div><div class="line"></div><div class="line">	function Pet(name,age,hobby)&#123;</div><div class="line">	   this.name=name;//this作用域：当前对象</div><div class="line">	   this.age=age;</div><div class="line">	   this.hobby=hobby;</div><div class="line">	   this.eat=function()&#123;</div><div class="line">	      alert(&quot;我叫&quot;+this.name+&quot;,我喜欢&quot;+this.hobby+&quot;,是个程序员&quot;);</div><div class="line">	   &#125;</div><div class="line">	&#125;</div><div class="line">	var maidou =new Pet(&quot;麦兜&quot;,25,&quot;coding&quot;);//实例化、创建对象</div><div class="line">	maidou.eat();//调用eat方法</div><div class="line"></div><div class="line"></div><div class="line">4、用工厂方式来创建（内置对象）</div><div class="line"></div><div class="line">	 var wcDog =new Object();</div><div class="line">	 wcDog.name=&quot;旺财&quot;;</div><div class="line">	 wcDog.age=3;</div><div class="line">	 wcDog.work=function()&#123;</div><div class="line">	   alert(&quot;我是&quot;+wcDog.name+&quot;,汪汪汪......&quot;);</div><div class="line">	 &#125;</div><div class="line">	 wcDog.work();</div><div class="line"></div><div class="line"></div><div class="line">5、用原型方式来创建</div><div class="line"></div><div class="line">	 function Dog()&#123;&#125;</div><div class="line">	 Dog.prototype.name=&quot;旺财&quot;;</div><div class="line">	 Dog.prototype.eat=function()&#123;</div><div class="line">	    alert(this.name+&quot;是个吃货&quot;);</div><div class="line">	 &#125;</div><div class="line">	 var wangcai =new Dog();</div><div class="line">	 wangcai.eat();</div><div class="line"></div><div class="line"></div><div class="line">6、用混合方式来创建</div><div class="line"></div><div class="line">	function Car(name,price)&#123;</div><div class="line">	  this.name=name;</div><div class="line">	  this.price=price;</div><div class="line">	&#125;</div><div class="line">	Car.prototype.sell=function()&#123;</div><div class="line">	  alert(&quot;我是&quot;+this.name+&quot;，我现在卖&quot;+this.price+&quot;万元&quot;);</div><div class="line">	&#125;</div><div class="line">	var camry =new Car(&quot;凯美瑞&quot;,27);</div><div class="line">	camry.sell();</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>null，undefined 的区别？(参考阮一峰博客：<a href="http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html</a>)</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">null 		表示一个对象是“没有值”的值，也就是值为“空”；</div><div class="line">undefined 	表示一个变量声明了没有初始化(赋值)；</div><div class="line"></div><div class="line">undefined不是一个有效的JSON，而null是；</div><div class="line">undefined的类型(typeof)是undefined；</div><div class="line">null的类型(typeof)是object；</div><div class="line"></div><div class="line"></div><div class="line">Javascript将未赋值的变量默认值设为undefined；</div><div class="line">Javascript从来不会将变量设为null。它是用来让程序员表明某个用var声明的变量时没有值的。</div><div class="line"></div><div class="line">typeof undefined</div><div class="line">	//&quot;undefined&quot;</div><div class="line">	undefined :是一个表示&quot;无&quot;的原始值或者说表示&quot;缺少值&quot;，就是此处应该有一个值，但是还没有定义。当尝试读取时会返回 undefined；</div><div class="line">	例如变量被声明了，但没有赋值时，就等于undefined</div><div class="line"></div><div class="line">typeof null</div><div class="line">	//&quot;object&quot;</div><div class="line">	null : 是一个对象(空对象, 没有任何属性和方法)；</div><div class="line">	例如作为函数的参数，表示该函数的参数不是对象；</div><div class="line"></div><div class="line">注意：</div><div class="line">	在验证null时，一定要使用　=== ，因为 == 无法分别 null 和　undefined</div><div class="line">	null == undefined // true</div><div class="line">	null === undefined // false</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>什么是闭包（closure），为什么要用它？</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">闭包是指有权访问另一个函数作用域中变量的函数，创建闭包的最常见的方式就是在一个函数内创建另一个函数，通过另一个函数访问这个函数的局部变量,利用闭包可以突破作用链域，将函数内部的变量和方法传递到外部。</div><div class="line"></div><div class="line">闭包的特性：</div><div class="line"></div><div class="line">1.函数内再嵌套函数</div><div class="line">2.内部函数可以引用外层的参数和变量</div><div class="line">3.参数和变量不会被垃圾回收机制回收</div><div class="line"></div><div class="line">function say667() &#123;</div><div class="line">    // Local variable that ends up within closure</div><div class="line">    var num = 666;</div><div class="line">    var sayAlert = function() &#123;</div><div class="line">     alert(num);</div><div class="line">    &#125;</div><div class="line">    num++;</div><div class="line">    return sayAlert;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var sayAlert = say667();</div><div class="line">sayAlert() //执行结果应该弹出的667</div><div class="line"></div><div class="line">执行say667()后,say667()闭包内部变量会存在,而闭包内部函数的内部变量不会存在使得Javascript的垃圾回收机制GC不会收回say667()所占用的资源</div><div class="line">因为say667()的内部函数的执行需要依赖say667()中的变量</div><div class="line">这是对闭包作用的非常直白的描述</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>javascript 代码中的”use strict”;是什么意思 ? 使用它区别是什么？</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">use strict是一种 ECMAscript5 添加的（严格）运行模式,这种模式使得 Javascript 在更严格的条件下运行</div><div class="line"></div><div class="line">使JS编码更加规范化的模式,消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;</div><div class="line">默认支持的糟糕特性都会被禁用，比如不能用with，也不能在意外的情况下给全局变量赋值;</div><div class="line">全局变量的显示声明,函数必须声明在顶层，不允许在非函数代码块内声明函数,arguments.callee也不允许使用；</div><div class="line">消除代码运行的一些不安全之处，保证代码运行的安全,限制函数中的arguments修改，严格模式下的eval函数的行为和非严格模式的也不相同;</div><div class="line">提高编译器效率，增加运行速度；</div><div class="line">为未来新版本的Javascript标准化做铺垫。</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>new操作符具体干了什么呢?</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1、创建一个空对象，并且 this 变量引用该对象，同时还继承了该函数的原型。</div><div class="line">2、属性和方法被加入到 this 引用的对象中。</div><div class="line">3、新创建的对象由 this 所引用，并且最后隐式的返回 this 。</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>Javascript中，有一个函数，执行时对象查找时，永远不会去查找原型，这个函数是？</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">hasOwnProperty</div><div class="line"></div><div class="line">javaScript中hasOwnProperty函数方法是返回一个布尔值，指出一个对象是否具有指定名称的属性。此方法无法检查该对象的原型链中是否具有该属性；该属性必须是对象本身的一个成员。</div><div class="line"></div><div class="line">使用方法：</div><div class="line">object.hasOwnProperty(proName)</div><div class="line">其中参数object是必选项。一个对象的实例。</div><div class="line">proName是必选项。一个属性名称的字符串值。</div><div class="line"></div><div class="line">var demo = &#123;pro: 1&#125;;</div><div class="line">demo.hasOwnProperty(&apos;pro&apos;) // true</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>JSON 的了解？</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式。</div><div class="line">它是基于JavaScript的一个子集。数据格式简单, 易于读写, 占用带宽小</div><div class="line">如：&#123;&quot;age&quot;:&quot;12&quot;, &quot;name&quot;:&quot;back&quot;&#125;</div><div class="line"></div><div class="line">JSON对象转换为JSON字符串：</div><div class="line">var obj = &#123;&quot;age&quot;:&quot;12&quot;, &quot;name&quot;:&quot;back&quot;&#125;;</div><div class="line">var str = JSON.stringify(obj);</div><div class="line"></div><div class="line">JSON字符串转换为JSON对象:</div><div class="line">var obj2 = JSON.parse(str);</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>Ajax 是什么? 如何创建一个Ajax？</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">ajax的全称：Asynchronous Javascript And XML。</div><div class="line">异步传输+js+xml。</div><div class="line">所谓异步，在这里简单地解释就是：向服务器发送请求的时候，我们不必等待结果，而是可以同时做其他的事情，等到有了结果它自己会根据设定进行后续操作，与此同时，页面是不会发生整页刷新的，提高了用户体验。</div><div class="line"></div><div class="line">(1)创建XMLHttpRequest对象,也就是创建一个异步调用对象</div><div class="line">(2)创建一个新的HTTP请求,并指定该HTTP请求的方法、URL及验证信息</div><div class="line">(3)设置响应HTTP请求状态变化的函数</div><div class="line">(4)发送HTTP请求</div><div class="line">(5)获取异步调用返回的数据</div><div class="line">(6)使用JavaScript和DOM实现局部刷新</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>Ajax 解决浏览器缓存问题？</li>
+</ol>
+</blockquote>
+<p>答:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">1、在ajax发送请求前加上 anyAjaxObj.setRequestHeader(&quot;If-Modified-Since&quot;,&quot;0&quot;)。</div><div class="line"></div><div class="line">2、在ajax发送请求前加上 anyAjaxObj.setRequestHeader(&quot;Cache-Control&quot;,&quot;no-cache&quot;)。</div><div class="line"></div><div class="line">3、在URL后面加上一个随机数： &quot;fresh=&quot; + Math.random();。</div><div class="line"></div><div class="line">4、在URL后面加上时间戳：&quot;nowtime=&quot; + new Date().getTime();。</div><div class="line"></div><div class="line">5、如果是使用jQuery，直接这样就可以了 $.ajaxSetup(&#123;cache:false&#125;)。这样页面的所有ajax都会执行这条语句就是不需要保存缓存记录。</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>跨域的几种解决方案</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">（1）document.domain + iframe</div><div class="line"></div><div class="line">　　（2）动态创建script</div><div class="line"></div><div class="line">　　（3）window.name + iframe</div><div class="line"></div><div class="line">　　（4）window.postMessage</div><div class="line"></div><div class="line">　　（5）CORS</div><div class="line"></div><div class="line">　　（6）JSONP</div><div class="line"></div><div class="line">　　（7）nginx代理(服务器代理)</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>AMD（Asynchronous Modules Definition）、CMD（Common Module Definition）规范区别？</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">Asynchronous Module Definition，异步模块定义，所有的模块将被异步加载，模块加载不影响后面语句运行。所有依赖某些模块的语句均放置在回调函数中。</div><div class="line"></div><div class="line">AMD CMD区别：</div><div class="line">    1. 对于依赖的模块，AMD 是提前执行，CMD 是延迟执行。不过 RequireJS 从 2.0 开始，也改成可以延迟执行（根据写法不同，处理方式不同）。CMD 推崇 as lazy as possible.</div><div class="line">    2. CMD 推崇依赖就近，AMD 推崇依赖前置。</div><div class="line">    </div><div class="line"> // CMD</div><div class="line"> define(function(require, exports, module) &#123;</div><div class="line">     var a = require(&apos;./a&apos;)</div><div class="line">     a.doSomething()</div><div class="line">     // 此处略去 100 行</div><div class="line">     var b = require(&apos;./b&apos;) // 依赖可以就近书写</div><div class="line">     b.doSomething()</div><div class="line">     // ...</div><div class="line"> &#125;)</div><div class="line"></div><div class="line"> // AMD 默认推荐</div><div class="line"> define([&apos;./a&apos;, &apos;./b&apos;], function(a, b) &#123; // 依赖必须一开始就写好</div><div class="line">     a.doSomething()</div><div class="line">     // 此处略去 100 行</div><div class="line">     b.doSomething()</div><div class="line">     // ...</div><div class="line"> &#125;)</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>documen.write和 innerHTML的区别.</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">document.write只能重绘整个页面</div><div class="line"></div><div class="line">innerHTML可以重绘页面的一部分</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>.call() 和 .apply() 的区别？</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line">1.apply和call的区别在哪里</div><div class="line">2.什么情况下用apply,什么情况下用call</div><div class="line">3.apply的其他巧妙用法（一般在什么情况下可以使用apply）</div><div class="line"></div><div class="line">apply:方法能劫持另外一个对象的方法，继承另外一个对象的属性.（改变this指向）</div><div class="line"></div><div class="line">Function.apply(obj,args)方法能接收两个参数</div><div class="line">obj：这个对象将代替Function类里this对象</div><div class="line">args：这个是数组，它将作为参数传给Function（args--&gt;arguments）</div><div class="line"></div><div class="line">call:和apply的意思一样,只不过是参数列表不一样.</div><div class="line"></div><div class="line">Function.call(obj,[param1[,param2[,…[,paramN]]]])</div><div class="line">obj：这个对象将代替Function类里this对象</div><div class="line">params：这个是一个参数列表</div><div class="line"></div><div class="line">代码示例：</div><div class="line">1. apply示例</div><div class="line">/*定义一个人类*/ </div><div class="line">function Person(name,age) &#123; </div><div class="line">    this.name=name; </div><div class="line">    this.age=age; </div><div class="line">&#125; </div><div class="line">/*定义一个学生类*/ </div><div class="line">functionStudent(name,age,grade) &#123; </div><div class="line">    Person.apply(this,arguments);</div><div class="line">    this.grade=grade; </div><div class="line">&#125; </div><div class="line">//创建一个学生类 </div><div class="line">var student=new Student(&quot;qian&quot;,21,&quot;一年级&quot;); </div><div class="line">//测试 </div><div class="line">alert(&quot;name:&quot;+student.name+&quot;\n&quot;+&quot;age:&quot;+student.age+&quot;\n&quot;+&quot;grade:&quot;+student.grade); </div><div class="line">// 大家可以看到测试结果 name:qian age:21 grade:一年级</div><div class="line">// 学生类里面我没有给name和age属性赋值啊,为什么又存在这两个属性的值呢,这个就是apply的神奇之处. </div><div class="line"></div><div class="line">2. call示例</div><div class="line">在Studen函数里面可以将apply中修改成如下:</div><div class="line">Person.call(this,name,age);</div><div class="line"></div><div class="line">3. 什么情况下用apply,什么情况下用call？</div><div class="line">在给对象参数的情况下,如果参数的形式是数组的时候,比如apply示例里面传递了参数arguments,这个参数是数组类型,并且在调用Person的时候参数的列表是对应一致的(也就是Person和Student的参数列表前两位是一致的) 就可以采用apply,如果我的Person的参数列表是这样的(age,name),而Student的参数列表是(name,age,grade),这样就可以用call来实现了,也就是直接指定参数列表对应值的位置(Person.call(this,age,name,grade));</div><div class="line"></div><div class="line">4. apply的一些其他巧妙用法</div><div class="line">细心的人可能已经察觉到,在我调用apply方法的时候,第一个参数是对象(this), 第二个参数是一个数组集合,在调用Person的时候,他需要的不是一个数组,但是为什么他给我一个数组我仍然可以将数组解析为一个一个的参数,</div><div class="line">这个就是apply的一个巧妙的用处,可以将一个数组默认的转换为一个参数列表([param1,param2,param3] 转换为 param1,param2,param3) 这个如果让我们用程序来实现将数组的每一个项,来装换为参数的列表,可能都得费一会功夫,借助apply的这点特性,所以就有了以下高效率的方法:</div><div class="line"></div><div class="line">a)Math.max 可以实现得到数组中最大的一项</div><div class="line"></div><div class="line">因为Math.max 参数里面不支持Math.max([param1,param2]) 也就是数组</div><div class="line">但是它支持Math.max(param1,param2,param3…),所以可以根据刚才apply的那个特点来解决 var max=Math.max.apply(null,array),这样轻易的可以得到一个数组中最大的一项</div><div class="line">(apply会将一个数组装换为一个参数接一个参数的传递给方法)</div><div class="line">这块在调用的时候第一个参数给了一个null,这个是因为没有对象去调用这个方法,我只需要用这个方法帮我运算,得到返回的结果就行,.所以直接传递了一个null过去</div><div class="line">var a = [1,2,3,4,5,6,7,8,9,10];</div><div class="line">var max = Math.max.apply(null,a);</div><div class="line">同理： var min=Math.min.apply(null,array);</div><div class="line"></div><div class="line">b)Array.prototype.push 可以实现两个数组合并</div><div class="line"></div><div class="line">同样push方法没有提供push一个数组,但是它提供了push(param1,param,…paramN) 所以同样也可以通过apply来装换一下这个数组,即:</div><div class="line"></div><div class="line">var arr1=new Array(&quot;1&quot;,&quot;2&quot;,&quot;3&quot;); </div><div class="line">var arr2=new Array(&quot;4&quot;,&quot;5&quot;,&quot;6&quot;); </div><div class="line">Array.prototype.push.apply(arr1,arr2);</div><div class="line">arr1; // [1,2,3,4,5,6]</div><div class="line">arr2; // [4,5,6]</div><div class="line"></div><div class="line">也可以这样理解,arr1调用了push方法,参数是通过apply将数组装换为参数列表的集合.</div><div class="line"></div><div class="line">一般在目标函数只需要n个参数列表,而不接收一个数组的形式（[param1[,param2[,…[,paramN]]]]）,可以通过apply的方式巧妙地解决这个问题!</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>jquery 中如何将数组转化为json字符串，然后再转化回来？</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩展：</div><div class="line">$.fn.stringifyArray = function(array) &#123;</div><div class="line">    return JSON.stringify(array)</div><div class="line">&#125;</div><div class="line"></div><div class="line">$.fn.parseArray = function(array) &#123;</div><div class="line">    return JSON.parse(array)</div><div class="line">&#125;</div><div class="line"></div><div class="line">$(&quot;&quot;).stringifyArray(array); // 调用</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>如何判断当前脚本运行在浏览器还是node环境中？（阿里）</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">this === window ? &apos;browser&apos; : &apos;node&apos;;</div><div class="line"></div><div class="line">通过判断Global对象是否为window，如果不为window，当前脚本没有运行在浏览器中</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>那些操作会造成内存泄漏？</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">内存泄漏指任何对象在您不再拥有或需要它之后仍然存在。</div><div class="line">垃圾回收器定期扫描对象，并计算引用了每个对象的其他对象的数量。如果一个对象的引用数量为 0（没有其他对象引用过该对象），或对该对象的惟一引用是循环的，那么该对象的内存即可回收。</div><div class="line"></div><div class="line">setTimeout 的第一个参数使用字符串而非函数的话，会引发内存泄漏。</div><div class="line">闭包、控制台日志、循环（在两个对象彼此引用且彼此保留时，就会产生一个循环）</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>JQuery一个对象可以同时绑定多个事件，这是如何实现的？</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">* 多个事件同一个函数：</div><div class="line"> 	$(&quot;div&quot;).on(&quot;click mouseover&quot;, function()&#123;&#125;);</div><div class="line"> * 多个事件不同函数</div><div class="line"> 	$(&quot;div&quot;).on(&#123;</div><div class="line"> 		click: function()&#123;&#125;,</div><div class="line"> 		mouseover: function()&#123;&#125;</div><div class="line"> 	&#125;);</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>Webpack热更新实现原理?</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">1. Webpack编译期，为需要热更新的 entry 注入热更新代码(EventSource通信)</div><div class="line">2. 页面首次打开后，服务端与客户端通过 EventSource 建立通信渠道，把下一次的 hash 返回前端</div><div class="line">3. 客户端获取到hash，这个hash将作为下一次请求服务端 hot-update.js 和 hot-update.json的hash</div><div class="line">4. 修改页面代码后，Webpack 监听到文件修改后，开始编译，编译完成后，发送 build 消息给客户端</div><div class="line">5. 客户端获取到hash，成功后客户端构造hot-update.js script链接，然后插入主文档</div><div class="line">6. hot-update.js 插入成功后，执行hotAPI 的 createRecord 和 reload方法，获取到 Vue 组件的 render方法，重新 render 组件， 继而实现 UI 无刷新更新。</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>Object.is() 与原来的比较操作符“ ===”、“ ==”的区别？</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">两等号判等，会在比较时进行类型转换；</div><div class="line">三等号判等(判断严格)，比较时不进行隐式类型转换,（类型不同则会返回false）；</div><div class="line"></div><div class="line">Object.is 在三等号判等的基础上特别处理了 NaN 、-0 和 +0 ，保证 -0 和 +0 不再相同，</div><div class="line">但 Object.is(NaN, NaN) 会返回 true.</div><div class="line"></div><div class="line">Object.is 应被认为有其特殊的用途，而不能用它认为它比其它的相等对比更宽松或严格。</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>什么叫优雅降级和渐进增强？</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">优雅降级：Web站点在所有新式浏览器中都能正常工作，如果用户使用的是老式浏览器，则代码会针对旧版本的IE进行降级处理了,使之在旧式浏览器上以某种形式降级体验却不至于完全不能用。</div><div class="line">如：border-shadow</div><div class="line"></div><div class="line">渐进增强：从被所有浏览器支持的基本功能开始，逐步地添加那些只有新版本浏览器才支持的功能,向页面增加不影响基础浏览器的额外样式和功能的。当浏览器支持时，它们会自动地呈现出来并发挥作用。</div><div class="line">如：默认使用flash上传，但如果浏览器支持 HTML5 的文件上传功能，则使用HTML5实现更好的体验；</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>WEB应用从服务器主动推送Data到客户端有那些方式？</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">html5提供的Websocket</div><div class="line">不可见的iframe</div><div class="line">WebSocket通过Flash</div><div class="line">XHR长时间连接</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li><p>你有用过哪些前端性能优化的方法？<br>答：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">（1） 减少http请求次数：CSS Sprites, JS、CSS源码压缩、图片大小控制合适；网页Gzip，CDN托管，data缓存 ，图片服务器。</div><div class="line"></div><div class="line">（2） 前端模板 JS+数据，减少由于HTML标签导致的带宽浪费，前端用变量保存AJAX请求结果，每次操作本地变量，不用请求，减少请求次数</div><div class="line"></div><div class="line">（3） 用innerHTML代替DOM操作，减少DOM操作次数，优化javascript性能。</div><div class="line"></div><div class="line">（4） 当需要设置的样式很多时设置className而不是直接操作style。</div><div class="line"></div><div class="line">（5） 少用全局变量、缓存DOM节点查找的结果。减少IO读取操作。</div><div class="line"></div><div class="line">（6） 避免使用CSS Expression（css表达式)又称Dynamic properties(动态属性)。</div><div class="line"></div><div class="line">（7） 图片预加载，将样式表放在顶部，将脚本放在底部  加上时间戳。</div><div class="line"></div><div class="line">（8） 避免在页面的主体布局中使用table，table要等其中的内容完全下载之后才会显示出来，显示比div+css布局慢。</div><div class="line">对普通的网站有一个统一的思路，就是尽量向前端优化、减少数据库操作、减少磁盘IO。向前端优化指的是，在不影响功能和体验的情况下，能在浏览器执行的不要在服务端执行，能在缓存服务器上直接返回的不要到应用服务器，程序能直接取得的结果不要到外部取得，本机内能取得的数据不要到远程取，内存能取到的不要到磁盘取，缓存中有的不要去数据库查询。减少数据库操作指减少更新次数、缓存结果减少查询次数、将数据库执行的操作尽可能的让你的程序完成（例如join查询），减少磁盘IO指尽量不使用文件系统作为缓存、减少读写文件次数等。程序优化永远要优化慢的部分，换语言是无法“优化”的。</div></pre></td></tr></table></figure>
+</li>
+<li><p>http状态码有那些？分别代表是什么意思？</p>
+</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">    100  Continue	继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息</div><div class="line">200  OK 		正常返回信息</div><div class="line">201  Created  	请求成功并且服务器创建了新的资源</div><div class="line">202  Accepted 	服务器已接受请求，但尚未处理</div><div class="line">301  Moved Permanently  请求的网页已永久移动到新位置。</div><div class="line">302  Found  		临时性重定向。</div><div class="line">303  See Other  	临时性重定向，且总是使用 GET 请求新的 URI。</div><div class="line">304  Not Modified 自从上次请求后，请求的网页未修改过。</div><div class="line"></div><div class="line">400 Bad Request  服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求。</div><div class="line">401 Unauthorized 请求未授权。</div><div class="line">403 Forbidden  	禁止访问。</div><div class="line">404 Not Found  	找不到如何与 URI 相匹配的资源。</div><div class="line"></div><div class="line">500 Internal Server Error  最常见的服务器端错误。</div><div class="line">503 Service Unavailable 服务器端暂时无法处理请求（可能是过载或维护）。</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？（流程说的越详细越好）</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"> 注：这题胜在区分度高，知识点覆盖广，再不懂的人，也能答出几句，</div><div class="line"> 而高手可以根据自己擅长的领域自由发挥，从URL规范、HTTP协议、DNS、CDN、数据库查询、</div><div class="line"> 到浏览器流式解析、CSS规则构建、layout、paint、onload/domready、JS执行、JS API绑定等等；</div><div class="line"></div><div class="line"> 详细版：</div><div class="line">1、浏览器会开启一个线程来处理这个请求，对 URL 分析判断如果是 http 协议就按照 Web 方式来处理;</div><div class="line">2、调用浏览器内核中的对应方法，比如 WebView 中的 loadUrl 方法;</div><div class="line"> 3、通过DNS解析获取网址的IP地址，设置 UA 等信息发出第二个GET请求;</div><div class="line">4、进行HTTP协议会话，客户端发送报头(请求报头);</div><div class="line"> 5、进入到web服务器上的 Web Server，如 Apache、Tomcat、Node.JS 等服务器;</div><div class="line"> 6、进入部署好的后端应用，如 PHP、Java、JavaScript、Python 等，找到对应的请求处理;</div><div class="line">7、处理结束回馈报头，此处如果浏览器访问过，缓存上有对应资源，会与服务器最后修改时间对比，一致则返回304;</div><div class="line"> 8、浏览器开始下载html文档(响应报头，状态码200)，同时使用缓存;</div><div class="line"> 9、文档树建立，根据标记请求所需指定MIME类型的文件（比如css、js）,同时设置了cookie;</div><div class="line"> 10、页面开始渲染DOM，JS根据DOM API操作DOM,执行事件绑定等，页面显示完成。</div><div class="line"></div><div class="line"> 简洁版：</div><div class="line">浏览器根据请求的URL交给DNS域名解析，找到真实IP，向服务器发起请求；</div><div class="line">服务器交给后台处理完成后返回数据，浏览器接收文件（HTML、JS、CSS、图象等）；</div><div class="line">浏览器对加载到的资源（HTML、JS、CSS等）进行语法解析，建立相应的内部数据结构（如HTML的DOM）；</div><div class="line">载入解析到的资源文件，渲染页面，完成。</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>第一次访问页面中时弹出引导，用户关闭引导，之后再次进入页面时不希望出现引导，如何实现?</li>
+</ol>
+</blockquote>
+<p>答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">localStorage</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-20180222 JS面试题三" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1484,544 +1734,6 @@
 <li style="list-style: none"><input type="checkbox" checked> 函数的局部环境不仅有权访问函数作用域中的变量，而且有权访问其包含(父)环境，乃至全<br>局环境</li>
 <li style="list-style: none"><input type="checkbox" checked> 全局环境只能访问在全局环境中定义的变量和函数，而不能直接访问局部环境中的任何数据;</li>
 <li style="list-style: none"><input type="checkbox" checked> 变量的执行环境有助于确定应该何时释放内存。</li>
-</ul>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20171014 js基本概念" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/blog/2017/10/14/20171014 js基本概念/" class="article-date">
-      <time datetime="2017-10-14T04:17:51.000Z" itemprop="datePublished">2017-10-14</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2017/10/14/20171014 js基本概念/">js 基本概念</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><ul>
-<li style="list-style: none"><input type="checkbox" checked> 语法 </li>
-<li style="list-style: none"><input type="checkbox" checked> 数据类型</li>
-<li style="list-style: none"><input type="checkbox" checked> 流控制语句</li>
-<li style="list-style: none"><input type="checkbox" checked> 函数<h2 id="1-1-语法"><a href="#1-1-语法" class="headerlink" title="1.1 语法"></a>1.1 语法</h2></li>
-<li>区分大小写</li>
-</ul>
-<p>ECMAScript 中的一切(变量、函数名和操作符)都区分大小写，函数名不能使用 typeof，因为它 是一个关键字，但 typeOf 则完全可以是一个有效的函数名。</p>
-<ul>
-<li>标识符</li>
-</ul>
-<p>标识符，就是指变量、函数、属性的名字，或者函数的参数。标识符的格式：</p>
-<ol>
-<li>第一个字符必须是一个字母、下划线(_)或一个美元符号($);</li>
-<li>其他字符可以是字母、下划线、美元符号或数字。</li>
-<li>按照惯例，ECMAScript 标识符采用驼峰大小写格式，也就是第一个字母小写，剩下的每个单词的<br>首字母大写。</li>
-</ol>
-<p>==不能把关键字、保留字、true、false 和 null 用作标识符==</p>
-<ul>
-<li>注释</li>
-</ul>
-<p>ECMAScript的注释包括单行注释和块级注释。<br>单行注释以两个斜杠开头：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">// 单行注释</div></pre></td></tr></table></figure>
-<p>块级注释以一个斜杠和一个星号开头，以一个星号和一个斜杠结尾：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line">* 这是一个多行 </div><div class="line">* (块级)注释 </div><div class="line">*/</div></pre></td></tr></table></figure>
-<ul>
-<li>严格模式</li>
-</ul>
-<p>ECMAScript 5 引入了严格模式(strict mode)的概念。严格模式是为 JavaScript 定义了一种不同的 解析与执行模型。在严格模式下，ECMAScript 3 中的一些不确定的行为将得到处理，而且对某些不安全 的操作也会抛出错误。要在整个脚本中启用严格模式，可以在顶部添加如下代码:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;use strict&quot;;</div></pre></td></tr></table></figure>
-<p>在函数内部的上方包含这条编译指示，也可以指定函数在严格模式下执行:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function doSomething()&#123;</div><div class="line">    &quot;use strict&quot;;</div><div class="line">    //函数体 </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>语句</li>
-</ul>
-<p>ECMAScript 中的语句以一个分号结尾;如果省略分号，则由解析器确定语句的结尾。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var sum = a + b // 即使没有分号也是有效的语句——不推荐</div><div class="line">var diff = a - b; // 有效的语句——推荐</div></pre></td></tr></table></figure>
-<h2 id="1-2-关键字和保留字（了解）"><a href="#1-2-关键字和保留字（了解）" class="headerlink" title="1.2 关键字和保留字（了解）"></a>1.2 关键字和保留字（了解）</h2><p>ECMA描述了一组具有特定用途的关键字，这些关键字可用于表示控制语句的开始或结束，或 者用于执行特定操作等。按照规则，关键字也是语言保留的，不能用作标识符。ECMAScript的关键字：</p>
-<table>
-<thead>
-<tr>
-<th>break</th>
-<th>do</th>
-<th>instanceof</th>
-<th>typeof</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>case</td>
-<td>else</td>
-<td>new</td>
-<td>var</td>
-</tr>
-<tr>
-<td>catch</td>
-<td>finally</td>
-<td>return</td>
-<td>void</td>
-</tr>
-<tr>
-<td>continue</td>
-<td>for</td>
-<td>switch</td>
-<td>while</td>
-</tr>
-<tr>
-<td>debugger</td>
-<td>function</td>
-<td>this</td>
-<td>with</td>
-</tr>
-<tr>
-<td>default</td>
-<td>if</td>
-<td>throw</td>
-<td>delete</td>
-</tr>
-<tr>
-<td>in</td>
-<td>try</td>
-<td>abstract</td>
-<td>enum</td>
-</tr>
-<tr>
-<td>int</td>
-<td>short</td>
-<td>boolean</td>
-<td>export</td>
-</tr>
-<tr>
-<td>interface</td>
-<td>static</td>
-<td>byte</td>
-<td>extends</td>
-</tr>
-<tr>
-<td>long</td>
-<td>super</td>
-<td>char</td>
-<td>final</td>
-</tr>
-<tr>
-<td>native</td>
-<td>synchronized</td>
-<td>class</td>
-<td>float</td>
-</tr>
-<tr>
-<td>package</td>
-<td>throws</td>
-<td>const</td>
-<td>goto</td>
-</tr>
-<tr>
-<td>private</td>
-<td>transient</td>
-<td>debugger</td>
-<td>implements</td>
-</tr>
-<tr>
-<td>protected</td>
-<td>volatile</td>
-<td>double</td>
-<td>import</td>
-</tr>
-<tr>
-<td>public</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>第 5 版把在非严格模式下运行时的保留字缩减为下列这些:</p>
-<table>
-<thead>
-<tr>
-<th>class</th>
-<th>enum</th>
-<th>extends</th>
-<th>super</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>const</td>
-<td>export</td>
-<td>import</td>
-</tr>
-</tbody>
-</table>
-<p>在严格模式下，第 5 版还对以下保留字施加了限制:</p>
-<table>
-<thead>
-<tr>
-<th>implements</th>
-<th>package</th>
-<th>public</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>interface</td>
-<td>private</td>
-<td>static</td>
-</tr>
-<tr>
-<td>let</td>
-<td>protected</td>
-<td>yield</td>
-</tr>
-</tbody>
-</table>
-<h2 id="1-3-变量"><a href="#1-3-变量" class="headerlink" title="1.3 变量"></a>1.3 变量</h2><p>ECMAScript 的变量是松散类型的，所谓松散类型就是可以用来保存任何类型的数据。定义变量时要使用 var 操作符，后跟变量名。</p>
-<ul>
-<li>全局变量</li>
-<li>局部变量<h2 id="1-4-数据类型"><a href="#1-4-数据类型" class="headerlink" title="1.4 数据类型"></a>1.4 数据类型</h2>ECMAScript 中有 6 种简单数据类型(也称为基本数据类型):Undefined、Null、Boolean、Number 、String和Symbol(es6新增一种Symbol)。还有 1 种复杂数据类型——Object。<h3 id="1-4-1-typeof操作符"><a href="#1-4-1-typeof操作符" class="headerlink" title="1.4.1 typeof操作符"></a>1.4.1 typeof操作符</h3></li>
-</ul>
-<p>检测数据类型的一种方法。</p>
-<blockquote>
-<p>“undefined”——如果这个值未定义;<br>“boolean”——如果这个值是布尔值;<br>“string”——如果这个值是字符串;<br>“number”——如果这个值是数值;<br>“object”——如果这个值是对象或 null;<br>“function”——如果这个值是函数;<br>“symbol”–如果这个值是Symbol。</p>
-</blockquote>
-<p>有些时候，typeof 操作符会返回一些令人迷惑但技术上却正确的值。比如，调用 typeof null 会返回”object”，因为特殊值 null 被认为是一个空的对象引用。</p>
-<h3 id="1-4-2-Undefined类型"><a href="#1-4-2-Undefined类型" class="headerlink" title="1.4.2 Undefined类型"></a>1.4.2 Undefined类型</h3><p>Undefined 类型只有一个值，即特殊的 undefined。在使用 var 声明变量但未对其加以初始化时,这个变量的值就是 undefined，对于尚未声明过的变量，只能执行一项操作，即使用 typeof 操作符检测其数据类型。</p>
-<h3 id="1-4-3-Null类型"><a href="#1-4-3-Null类型" class="headerlink" title="1.4.3 Null类型"></a>1.4.3 Null类型</h3><p>Null 类型是第二个只有一个值的数据类型，这个特殊的值是 null。从逻辑角度来看，null 值表 示一个空对象指针，而这也正是使用 typeof 操作符检测 null 值时会返回”object”的原因，如下面 的例子所示:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var car = null;</div><div class="line">alert(typeof car); // &quot;object&quot;</div></pre></td></tr></table></figure>
-<p>如果定义的变量准备在将来用于保存对象，那么最好将该变量初始化为 null 而不是其他值。这样 一来，只要直接检查 null 值就可以知道相应的变量是否已经保存了一个对象的引用，如下面的例子 所示:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if (car != null)&#123;</div><div class="line">   // 对 car 对象执行某些操作</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>实际上，undefined 值是派生自 null 值的，因此 ECMA-262 规定对它们的相等性测试要返回 true:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alert(null == undefined); //true</div></pre></td></tr></table></figure>
-<p><strong>如前所述，无论在什么情况下 都没有必要把一个变量的值显式地设置为 undefined，可是同样的规则对 null 却不适用。换句话说， 只要意在保存对象的变量还没有真正保存对象，就应该明确地让该变量保存 null 值。这样做不仅可以 体现 null 作为空对象指针的惯例，而且也有助于进一步区分 null 和 undefined。</strong></p>
-<h3 id="1-4-4-Boolean类型"><a href="#1-4-4-Boolean类型" class="headerlink" title="1.4.4 Boolean类型"></a>1.4.4 Boolean类型</h3><p>Boolean类型只有两个字面值:true 和 false。<br>要将一个值转换为其对应的 Boolean 值，可以调用转型函数 Boolean()。<br>各种数据类型及其对 应的转换规则：</p>
-<table>
-<thead>
-<tr>
-<th>数据类型</th>
-<th>转换为true的值</th>
-<th>转换为false的值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Boolean</td>
-<td>true</td>
-<td>false</td>
-</tr>
-<tr>
-<td>String</td>
-<td>任何非空字符串</td>
-<td>“”(空字符串)</td>
-</tr>
-<tr>
-<td>Number</td>
-<td>任何非零数字值(包括无穷大)</td>
-<td>0和NaN</td>
-</tr>
-<tr>
-<td>Object</td>
-<td>任何对象</td>
-<td>null</td>
-</tr>
-<tr>
-<td>Undefined</td>
-<td></td>
-<td>undefined</td>
-</tr>
-</tbody>
-</table>
-<h3 id="1-4-5-Number类型"><a href="#1-4-5-Number类型" class="headerlink" title="1.4.5 Number类型"></a>1.4.5 Number类型</h3><ol>
-<li>浮点数值</li>
-</ol>
-<p>==0.1 + 0.2 != 0.3==</p>
-<p>关于浮点数值计算会产生舍入误差的问题，有一点需要明确:这是使用基于 IEEE754 数值的浮点计算的通病，ECMAScript 并非独此一家;其他使用相同数值格式的语言也存在这个问题。</p>
-<ol>
-<li>数值范围</li>
-</ol>
-<p>由于内存的限制，ECMAScript 并不能保存世界上所有的数值。<br>ECMAScript 能够表示的最小数值是 5e-324;最大数值是1.7976931348623157e+308</p>
-<p>Infinity/-Infinity</p>
-<p>要想确定一个数值是不是有穷的<br>,可以使用 isFinite()函数。</p>
-<ol>
-<li>NaN</li>
-</ol>
-<p>NaN，即非数值(Not a Number)是一个特殊的数值，这个数值用于表示一个本来要返回数值的操作数<br>未返回数值的情况(这样就不会抛出错误了)。<br>在 ECMAScript 中，任何数值除以 0 会返回 NaN1，因此不会影响其他代码的执行。NaN 与任何值都不相等，包括 NaN 本身。<br>要想确定一个参数是不是NaN，<br>ECMAScript 定义了 isNaN()函数。</p>
-<p><strong>isNaN()也适用于对象。在基于对象调用 isNaN() 函数时，会首先调用对象的 valueOf()方法，然后确定该方法返回的值是否可以转 换为数值。如果不能，则基于这个返回值再调用 toString()方法，再测试返回值。 而这个过程也是 ECMAScript 中内置函数和操作符的一般执行流程。</strong></p>
-<ol>
-<li>数值转换</li>
-</ol>
-<p>有3个函数可以把非数值转换为数值:Number()、parseInt()和 parseFloat()。</p>
-<p>第一个函数， 即转型函数 Number()可以用于任何数据类型，而另两个函数则专门用于把字符串转换成数值。</p>
-<blockquote>
-<p>Number()函数的转换规则：</p>
-</blockquote>
-<p>(1). 如果是 Boolean 值，true 和 false 将分别被转换为 1 和 0。</p>
-<p>(2). 如果是数字值，只是简单的传入和返回。</p>
-<p>(3). 如果是 null 值，返回 0。</p>
-<p>(4). 如果是 undefined，返回 NaN。</p>
-<p>(5). 如果是字符串，遵循下列规则:</p>
-<ul>
-<li>如果字符串中只包含数字(包括前面带正号或负号的情况)，则将其转换为十进制数值，即”1” 会变成 1，”123”会变成 123，而”011”会变成 11(注意:前导的零被忽略了);</li>
-<li>如果字符串中包含有效的浮点格式，如”1.1”，则将其转换为对应的浮点数值(同样，也会忽 略前导零);</li>
-<li>如果字符串中包含有效的十六进制格式，例如”0xf”，则将其转换为相同大小的十进制整 数值;</li>
-<li>如果字符串是空的(不包含任何字符)，则将其转换为 0;</li>
-<li>如果字符串中包含除上述格式之外的字符，则将其转换为 NaN。</li>
-</ul>
-<p>(6). 如果是对象，则调用对象的 valueOf()方法，然后依照前面的规则转换返回的值。如果转换<br>的结果是 NaN，则调用对象的 toString()方法，然后再次依照前面的规则转换返回的字符串值。</p>
-<blockquote>
-<p>parseInt()函数的转换规则：</p>
-</blockquote>
-<p><strong>parseInt()函数在转换字符串时，更多的是看其是否符合数值模式。它会忽略字 符串前面的空格，直至找到第一个非空格字符。如果第一个字符不是数字字符或者负号，parseInt() 就会返回 NaN;也就是说，用 parseInt()转换空字符串会返回 NaN(Number()对空字符返回 0)。如 果第一个字符是数字字符，parseInt()会继续解析第二个字符，直到解析完所有后续字符或者遇到了 一个非数字字符。</strong></p>
-<p> parseInt()函数提供第二个参数:转换时使用的基数(即多少进制)。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var num1 = parseInt(&quot;10&quot;, 2);   //2 (按二进制解析)</div><div class="line">var num2 = parseInt(&quot;10&quot;, 8);   //8 (按八进制解析)</div><div class="line">var num3 = parseInt(&quot;10&quot;, 10);  //10(按十进制解析)</div><div class="line">var num4 = parseInt(&quot;10&quot;, 16);  //16(按十六进制解析)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>parseFloat()函数的转换规则：</p>
-</blockquote>
-<p><strong>parseFloat()也是从第一个字符(位置 0)开始解析每个字符。而且 也是一直解析到字符串末尾，或者解析到遇见一个无效的浮点数字字符为止。也就是说，字符串中的第 一个小数点是有效的，而第二个小数点就是无效的了，因此它后面的字符串将被忽略。</strong></p>
-<p>parseFloat()与 parseInt()的第二个区别在于它始终都会忽略前导 的零。parseFloat()可以识别前面讨论过的所有浮点数值格式，也包括十进制整数格式。但十六进制格 式的字符串则始终会被转换成 0。由于 parseFloat()只解析十进制值，因此它没有用第二个参数指定基 数的用法。</p>
-<h3 id="1-4-6-String类型"><a href="#1-4-6-String类型" class="headerlink" title="1.4.6 String类型"></a>1.4.6 String类型</h3><p>字符串可以由双<br>引号(“)或单引号(‘)表示。</p>
-<p>(1). 字符字面量(转移字符)</p>
-<table>
-<thead>
-<tr>
-<th>字面量</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>\n</td>
-<td>换行</td>
-</tr>
-<tr>
-<td>\t</td>
-<td>制表</td>
-</tr>
-<tr>
-<td>\b</td>
-<td>空格</td>
-</tr>
-<tr>
-<td>\r</td>
-<td>回车</td>
-</tr>
-<tr>
-<td>\f</td>
-<td>换页</td>
-</tr>
-<tr>
-<td>\</td>
-<td>斜杠</td>
-</tr>
-<tr>
-<td>\’</td>
-<td>单引号(‘)，在用单引号表示的字符串中使用。例如:’He said, \’hey.\’’</td>
-</tr>
-<tr>
-<td>\”</td>
-<td>双引号(“)，在用双引号表示的字符串中使用。例如:”He said, \”hey.\””</td>
-</tr>
-<tr>
-<td>\xnn</td>
-<td>以十六进制代码nn表示的一个字符(其中n为0~F)。例如，\x41表示”A”</td>
-</tr>
-<tr>
-<td>\unnnn</td>
-<td>　以十六进制代码nnnn表示的一个Unicode字符(其中n为0~F)。例如，\u03a3表示希腊字符Σ</td>
-</tr>
-</tbody>
-</table>
-<p>(２). 转化为字符串</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">toString();</div><div class="line"></div><div class="line">String();</div></pre></td></tr></table></figure>
-<blockquote>
-<p>toString();</p>
-</blockquote>
-<p>要把一个值转换为一个字符串有两种方式。第一种是使用几乎每个值都有的 toString()方法，这个方法唯一要做的就是返回相应值的字符串表现。</p>
-<p>==数值、布尔值、对象和字符串值都有 toString()方法。但 null 和 undefined 值没有这个方法。==<br>多数情况下，调用 toString()方法不必传递参数。但是，在调用数值的 toString()方法时，可 以传递一个参数:输出数值的基数。toString()可以输出以二进制、八进制、十六进制，乃至其他任意有效进制格 式表示的字符串值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var num = 10;</div><div class="line">alert(num.toString());   // &quot;10&quot;</div><div class="line">alert(num.toString(2));  // &quot;1010&quot;</div><div class="line">alert(num.toString(8));  // &quot;12&quot;</div><div class="line">alert(num.toString(10)); // &quot;10&quot;</div><div class="line">alert(num.toString(16)); // &quot;a&quot;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>String();</p>
-</blockquote>
-<p>在不知道要转换的值是不是 null 或 undefined 的情况下，还可以使用转型函数 String()，这个函数能够将任何类型的值转换为字符串。String()函数转换规则:</p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 如果值有 toString()方法，则调用该方法(没有参数)并返回相应的结果;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果值是 null，则返回”null”;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果值是 undefined，则返回”undefined”。</li>
-</ul>
-<h3 id="1-4-7-Object类型"><a href="#1-4-7-Object类型" class="headerlink" title="1.4.7 Object类型"></a>1.4.7 Object类型</h3><p><strong>ECMAScript中的对象其实就是一组数据和功能的集合。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var o = new Object();</div></pre></td></tr></table></figure></p>
-<p>如果不给构造函数传递参数，则可以省略后面的那一对圆括号(不推荐)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var o = new Object;  //有效，但不推荐省略圆括号</div></pre></td></tr></table></figure></p>
-<p><strong>Object 的每个实例都具有下列属性和方法:</strong></p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> constructor:保存着用于创建当前对象的函数。对于前面的例子而言，构造函数(constructor) 8 就是 Object()。</li>
-<li style="list-style: none"><input type="checkbox" checked> hasOwnProperty(propertyName):用于检查给定的属性在当前对象实例中(而不是在实例 的原型中)是否存在。其中，作为参数的属性名(propertyName)必须以字符串形式指定(例 如:o.hasOwnProperty(“name”))。</li>
-<li style="list-style: none"><input type="checkbox" checked> isPrototypeOf(object):用于检查传入的对象是否是传入对象的原型。</li>
-<li style="list-style: none"><input type="checkbox" checked> propertyIsEnumerable(propertyName):用于检查给定的属性是否能够使用 for-in 语句来枚举。与hasOwnProperty()方法一样，作为参数的属性名必须以字符串形式指定。</li>
-<li style="list-style: none"><input type="checkbox" checked> toLocaleString():返回对象的字符串表示，该字符串与执行环境的地区对应。</li>
-<li style="list-style: none"><input type="checkbox" checked> toString():返回对象的字符串表示。</li>
-<li style="list-style: none"><input type="checkbox" checked> valueOf():返回对象的字符串、数值或布尔值表示。通常与toString()方法的返回值相同。</li>
-</ul>
-<p>由于在 ECMAScript 中 Object 是所有对象的基础，因此所有对象都具有这些基本的属性和方法。</p>
-<h2 id="1-5-操作符"><a href="#1-5-操作符" class="headerlink" title="1.5 操作符"></a>1.5 操作符</h2><p>ECMA 描述了一组用于操作数据值的操作符，包括<strong>算术操作符</strong>(如加号和减号)、<strong>位操作符</strong>、<strong>关系操作符</strong>和<strong>相等操作符</strong>。==在应用于对象时，相应的操作符通常都会调用对象的valueOf()和(或)toString()方法，以便取得可以操作的值==。</p>
-<h3 id="1-5-1-一元操作符"><a href="#1-5-1-一元操作符" class="headerlink" title="1.5.1 一元操作符"></a>1.5.1 一元操作符</h3><p>只能操作一个值的操作符叫做一元操作符。</p>
-<p>(1). 递增和递减操作符</p>
-<p>前置递减/后置递减 or 前置递增/后置递增</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">++1 、 1++  区别(先自加后运算、先运算后自加)</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">--1 、 1--   区别(先自加后运算、先运算后自减)</div></pre></td></tr></table></figure>
-<p>(2). 一元加和减操作符(略)</p>
-<h3 id="1-5-2-位操作符（略）"><a href="#1-5-2-位操作符（略）" class="headerlink" title="1.5.2 位操作符（略）"></a>1.5.2 位操作符（略）</h3><h3 id="1-5-3-布尔操作符"><a href="#1-5-3-布尔操作符" class="headerlink" title="1.5.3 布尔操作符"></a>1.5.3 布尔操作符</h3><p>==布尔操作符一共有 3 个:非!(NOT)、与&amp;&amp;(AND) 和或||(OR)。==</p>
-<h4 id="1-逻辑非"><a href="#1-逻辑非" class="headerlink" title="1. 逻辑非"></a>1. 逻辑非</h4><p>逻辑非操作符由一个叹号(!)表示。逻辑非操作符首先会将它的操作数转换为一个布尔值，然后再对其求反，逻辑非操作符遵循下列规则：</p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 如果操作数是一个对象，返回 false;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果操作数是一个空字符串，返回 true;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果操作数是一个非空字符串，返回 false;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果操作数是数值 0，返回 true;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果操作数是任意非 0 数值(包括 Infinity)，返回 false;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果操作数是 null，返回 true;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果操作数是 NaN，返回 true;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果操作数是 undefined，返回 true。</li>
-</ul>
-<h4 id="2-逻辑与"><a href="#2-逻辑与" class="headerlink" title="2. 逻辑与"></a>2. 逻辑与</h4><p>逻辑与操作符由两个和号(&amp;&amp;)表示，有两个操作数。</p>
-<p>两个操作数都是布尔值（略）。</p>
-<p>有一个操作数不是布尔值遵循下列规则:</p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 如果第一个操作数是对象，则返回第二个操作数;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果第二个操作数是对象，则只有在第一个操作数的求值结果为 true 的情况下才会返回该对象;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果两个操作数都是对象，则返回第二个操作数;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果有一个操作数是 null，则返回 null;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果有一个操作数是 NaN，则返回 NaN;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果有一个操作数是 undefined，则返回 undefined。</li>
-</ul>
-<p><strong>逻辑与操作属于短路操作，即如果第一个操作数能够决定结果，那么就不会再对第二个操作数求值。</strong></p>
-<h4 id="3-逻辑或"><a href="#3-逻辑或" class="headerlink" title="3. 逻辑或"></a>3. 逻辑或</h4><p>逻辑或操作符由两个竖线符号(||)表示，有两个操作数，</p>
-<p>两个操作数都是布尔值（略）。</p>
-<p>有一个操作数不是布尔值遵循下列规则:</p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 如果第一个操作数是对象，则返回第一个操作数;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果第一个操作数的求值结果为 false，则返回第二个操作数;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果两个操作数都是对象，则返回第一个操作数;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果两个操作数都是 null，则返回 null;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果两个操作数都是 NaN，则返回 NaN;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果两个操作数都是 undefined，则返回 undefined。</li>
-</ul>
-<p><strong>与逻辑与操作符相似，逻辑或操作符也是短路操作符。</strong></p>
-<h3 id="1-5-4-乘性操作符"><a href="#1-5-4-乘性操作符" class="headerlink" title="1.5.4 乘性操作符"></a>1.5.4 乘性操作符</h3><p>3个乘性操作符:乘法、除法和求模</p>
-<p>乘法、除法(省略)</p>
-<p>求模：求模操作符会遵循下列特殊规则来处理特殊的值:</p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 如果操作数都是数值，执行常规的除法计算，返回除得的余数;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果被除数是无穷大值而除数是有限大的数值，则结果是 NaN;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果被除数是有限大的数值而除数是零，则结果是 NaN;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果是 Infinity 被 Infinity 除，则结果是 NaN;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果被除数是有限大的数值而除数是无穷大的数值，则结果是被除数;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果被除数是零，则结果是零;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果有一个操作数不是数值，则在后台调用 Number()将其转换为数值，然后再应用上面的规则。</li>
-</ul>
-<h3 id="1-5-5-加性操作符"><a href="#1-5-5-加性操作符" class="headerlink" title="1.5.5 加性操作符"></a>1.5.5 加性操作符</h3><h4 id="1-加法"><a href="#1-加法" class="headerlink" title="1. 加法"></a>1. 加法</h4><p>如果==两个操作符都是数值==，执行常规的加法计算，然后根据下列规则返回结果:</p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 如果有一个操作数是 NaN，则结果是 NaN;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果是 Infinity 加 Infinity，则结果是 Infinity;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果是-Infinity 加-Infinity，则结果是-Infinity;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果是 Infinity 加-Infinity，则结果是 NaN;</li>
-</ul>
-<p>如果==有一个操作数是字符串==，那么就要应用如下规则:</p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 如果两个操作数都是字符串，则将第二个操作数与第一个操作数拼接起来;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果只有一个操作数是字符串，则将另一个操作数转换为字符串，然后再将两个字符串拼接<br>起来。</li>
-</ul>
-<p>如果==有一个操作数是对象、数值或布尔值==，则调用它们的 toString()方法取得相应的字符串值，<br>然后再应用前面关于字符串的规则。对于 undefined 和 null，则分别调用 String()函数并取得字符 串”undefined”和”null”。</p>
-<h4 id="2-减法"><a href="#2-减法" class="headerlink" title="2. 减法"></a>2. 减法</h4><p>减法操作符运算规则：</p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 如果两个操作符都是数值，则执行常规的算术减法操作并返回结果;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果有一个操作数是 NaN，则结果是 NaN;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果是 Infinity 减 Infinity，则结果是 NaN;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果是-Infinity 减-Infinity，则结果是 NaN;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果是 Infinity 减-Infinity，则结果是 Infinity;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果是-Infinity 减 Infinity，则结果是-Infinity;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果有一个操作数是字符串、布尔值、null 或 undefined，则先在后台调用 Number()函数将<br>其转换为数值，然后再根据前面的规则执行减法计算。如果转换的结果是 NaN，则减法的结果<br>就是 NaN;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果有一个操作数是对象，则调用对象的 valueOf()方法以取得表示该对象的数值。如果得到<br>的值是 NaN，则减法的结果就是 NaN。如果对象没有 valueOf()方法，则调用其 toString()<br>方法并将得到的字符串转换为数值。<h3 id="1-5-6-关系操作符"><a href="#1-5-6-关系操作符" class="headerlink" title="1.5.6 关系操作符"></a>1.5.6 关系操作符</h3>小于(&lt;)、大于(&gt;)、小于等于(&lt;=)和大于等于(&gt;=)，运算规则：</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果两个操作数都是数值，则执行数值比较。</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果两个操作数都是字符串，则比较两个字符串对应的字符编码值。</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果一个操作数是数值，则将另一个操作数转换为一个数值，然后执行数值比较。</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果一个操作数是对象，则调用这个对象的 valueOf()方法，用得到的结果按照前面的规则执<br>行比较。如果对象没有 valueOf()方法，则调用 toString()方法，并用得到的结果根据前面<br>的规则执行比较。</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果一个操作数是布尔值，则先将其转换为数值，然后再执行比较。</li>
-</ul>
-<p>==常见的奇怪的现象：==<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var result = &quot;Brick&quot; &lt; &quot;alphabet&quot;;    //true</div><div class="line"></div><div class="line">var result = &quot;23&quot; &lt; &quot;3&quot;;    //true</div><div class="line"></div><div class="line">var result = &quot;23&quot; &lt; 3;    //false</div><div class="line"></div><div class="line">var result = &quot;a&quot; &lt; 3; // false，因为&quot;a&quot;被转换成了 NaN</div><div class="line"></div><div class="line">var result1 = NaN &lt; 3; //false</div><div class="line"></div><div class="line">var result2 = NaN &gt;= 3; //false</div></pre></td></tr></table></figure></p>
-<p>==<strong>根据规则，任何操作数与 NaN 进行关系比较，结果都是 false。</strong>==</p>
-<h3 id="1-5-7-相等操作符"><a href="#1-5-7-相等操作符" class="headerlink" title="1.5.7 相等操作符"></a>1.5.7 相等操作符</h3><h4 id="1-相等和不相等"><a href="#1-相等和不相等" class="headerlink" title="1. 相等和不相等"></a>1. 相等和不相等</h4><p>运算规则：</p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 如果有一个操作数是布尔值，则在比较相等性之前先将其转换为数值——false 转换为 0，而<br>true 转换为 1;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果一个操作数是字符串，另一个操作数是数值，在比较相等性之前先将字符串转换为数值;</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果一个操作数是对象，另一个操作数不是，则调用对象的 valueOf()方法，用得到的基本类<br>型值按照前面的规则进行比较;</li>
-<li style="list-style: none"><input type="checkbox" checked> null 和 undefined 是相等的。</li>
-<li style="list-style: none"><input type="checkbox" checked> 要比较相等性之前，不能将 null 和 undefined 转换成其他任何值。</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果有一个操作数是 NaN，则相等操作符返回 false，而不相等操作符返回 true。重要提示:<br>即使两个操作数都是 NaN，相等操作符也返回 false;因为按照规则，NaN 不等于 NaN。</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果两个操作数都是对象，则比较它们是不是同一个对象。如果两个操作数都指向同一个对象，<br>则相等操作符返回 true;否则，返回 false。<h4 id="2-全等和不全等-略"><a href="#2-全等和不全等-略" class="headerlink" title="2. 全等和不全等(略)"></a>2. 全等和不全等(略)</h4><h3 id="1-5-8-逗号操作符"><a href="#1-5-8-逗号操作符" class="headerlink" title="1.5.8 逗号操作符"></a>1.5.8 逗号操作符</h3>使用逗号操作符可以在一条语句中执行多个操作，如下面的例子所示:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var num1=1, num2=2, num3=3;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>逗号操作符多用于声明多个变量;但除此之外，逗号操作符还可以用于赋值。在用于赋值时，逗号 操作符总会返回表达式中的最后一项，如下面的例子所示:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var num = (5, 1, 4, 8, 0); // num的值为0</div></pre></td></tr></table></figure></p>
-<h2 id="1-6-语句"><a href="#1-6-语句" class="headerlink" title="1.6 语句"></a>1.6 语句</h2><h3 id="1-6-1-if语句-略"><a href="#1-6-1-if语句-略" class="headerlink" title="1.6.1 if语句(略)"></a>1.6.1 if语句(略)</h3><h3 id="1-6-2-do-while语句-略"><a href="#1-6-2-do-while语句-略" class="headerlink" title="1.6.2 do-while语句(略)"></a>1.6.2 do-while语句(略)</h3><p>do-while 语句是一种后测试循环语句，循环体内的代码至少会被执行一次</p>
-<h3 id="1-6-3-while语句-略"><a href="#1-6-3-while语句-略" class="headerlink" title="1.6.3 while语句(略)"></a>1.6.3 while语句(略)</h3><h3 id="1-6-4-for语句-略"><a href="#1-6-4-for语句-略" class="headerlink" title="1.6.4 for语句(略)"></a>1.6.4 for语句(略)</h3><h3 id="1-6-5-for-in语句"><a href="#1-6-5-for-in语句" class="headerlink" title="1.6.5 for-in语句"></a>1.6.5 for-in语句</h3><p>for-in 语句是一种精准的迭代语句，可以用来枚举对象的属性。以下是 for-in 语句的语法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for (property in expression) statement</div></pre></td></tr></table></figure></p>
-<p>示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for (var propName in window) &#123;</div><div class="line">     document.write(propName);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="1-6-6-break和continue语句"><a href="#1-6-6-break和continue语句" class="headerlink" title="1.6.6 break和continue语句"></a>1.6.6 break和continue语句</h3><p>==break 和 continue 语句用于在循环中精确地控制代码的执行。其中，break 语句会立即退出循环， 强制继续执行循环后面的语句。而 continue 语句虽然也是立即退出循环，但退出循环后会从循环的顶部继续执行。==</p>
-<h3 id="1-6-7-switch语句"><a href="#1-6-7-switch语句" class="headerlink" title="1.6.7 switch语句"></a>1.6.7 switch语句</h3><p>switch语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">switch (expression) &#123;</div><div class="line">      case value: statement</div><div class="line">        break;</div><div class="line">      case value: statement</div><div class="line">        break;</div><div class="line">      case value: statement</div><div class="line">        break;</div><div class="line">      case value: statement</div><div class="line">        break;</div><div class="line">      default: statement</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>如果合并多个case，添加注释<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">switch (i) &#123;</div><div class="line">    case 25:</div><div class="line">        /* 合并两种情形 */ </div><div class="line">    case 35:</div><div class="line">        alert(&quot;25 or 35&quot;);</div><div class="line">        break;</div><div class="line">    case 45:</div><div class="line">        alert(&quot;45&quot;);</div><div class="line">        break;</div><div class="line">    default:</div><div class="line">        alert(&quot;Other&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="1-7-函数"><a href="#1-7-函数" class="headerlink" title="1.7 函数"></a>1.7 函数</h2><p>函数的基本语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function functionName(arg0, arg1,...,argN) &#123;</div><div class="line">    statements</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><strong>严格模式对函数有一些限制:</strong></p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 不能把函数命名为 eval 或 arguments;</li>
-<li style="list-style: none"><input type="checkbox" checked> 不能把参数命名为 eval 或 arguments;</li>
-<li style="list-style: none"><input type="checkbox" checked> 不能出现两个命名参数同名的情况。<h3 id="1-7-1-理解函数参数"><a href="#1-7-1-理解函数参数" class="headerlink" title="1.7.1 理解函数参数"></a>1.7.1 理解函数参数</h3>ECMAScript 中的参数在内部是用一个类数组来表示的，<br>可以使用方括号语法访问它的每一个元素，例如arguments[0]，也可以用length属性来确定传递进来多少个参数<h3 id="1-7-2-没有重载"><a href="#1-7-2-没有重载" class="headerlink" title="1.7.2 没有重载"></a>1.7.2 没有重载</h3>ECMAScript 函数不能像传统意义上那样实现重载。而在其他语言(如 Java)中，可以为一个函数 编写两个定义，只要这两个定义的签名(接受的参数的类型和数量)不同即可。如前所述，ECMAScirpt 函数没有签名，因为其参数是由包含零或多个值的数组来表示的。而没有函数签名，真正的重载是不可 能做到的。<br><strong>通过检查传入函数中参数的类型和数量并作出不同的反应，可以模仿方法的重载。</strong></li>
-</ul>
-<h2 id="1-8-小结"><a href="#1-8-小结" class="headerlink" title="1.8 小结"></a>1.8 小结</h2><p>ECMAScript 中包含了所有基本的语法、操作符、数据类型以及完成基本的计算任务所必需的对象，但没有对取得输入和产生输出的机制作出规定。</p>
-<p>以下简要总结了 ECMAScript 中基本的要素：</p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> ECMAScript中的<strong>基本数据类型</strong>包括 Undefined、Null、Boolean、Number、String和Symbol(ES6新增)</li>
-<li style="list-style: none"><input type="checkbox" checked> 与其他语言不同，ECMScript 没有为整数和浮点数值分别定义不同的数据类型，Number 类型可<br>用于表示所有数值。</li>
-<li style="list-style: none"><input type="checkbox" checked> ECMAScript中也有一种<strong>复杂的数据类型</strong>，即 Object类型，该类型是这门语言中所有对象的基<br>础类型。</li>
-<li style="list-style: none"><input type="checkbox" checked> 严格模式为这门语言中容易出错的地方施加了限制。</li>
-<li style="list-style: none"><input type="checkbox" checked> ECMAScript 提供了很多与C及其他类 C语言中相同的基本操作符，包括算术操作符、布尔操作符、关系操作符、相等操作符及赋值操作符等。</li>
-<li style="list-style: none"><input type="checkbox" checked> ECMAScript从其他语言中借鉴了很多流控制语句，例如if语句、for语句和switch语句等。ECMAScript中的函数与其他语言中的函数有诸多不同之处。</li>
-<li style="list-style: none"><input type="checkbox" checked> 无须指定函数的返回值，因为任何 ECMAScript函数都可以在任何时候返回任何值。</li>
-<li style="list-style: none"><input type="checkbox" checked> 实际上，未指定返回值的函数返回的是一个特殊的 undefined值。</li>
-<li style="list-style: none"><input type="checkbox" checked> ECMAScript中也没有函数签名的概念，因为其函数参数是以一个包含零或多个值的数组的形式传递的</li>
-<li style="list-style: none"><input type="checkbox" checked> 可以向 ECMAScript 函数传递任意数量的参数，并且可以通过 arguments 对象来访问这些参数</li>
-<li style="list-style: none"><input type="checkbox" checked> 由于不存在函数签名的特性，ECMAScript 函数不能重载。</li>
 </ul>
 
       
